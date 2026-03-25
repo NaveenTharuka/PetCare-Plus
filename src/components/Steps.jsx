@@ -21,7 +21,7 @@ const steps = [
 export default function Steps() {
     return (
         <section style={{ padding: "80px 0", background: "#FDFBF7" }}>
-            <div className="max-w-7xl mx-auto px-6">
+            <div style={{ maxWidth: 1280, margin: "0 auto", padding: "0 24px" }}>
                 <div style={{
                     background: "#f6f1ec",
                     borderRadius: 50,

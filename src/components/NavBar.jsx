@@ -12,7 +12,7 @@ export default function NavBar() {
             backdropFilter: "blur(12px)",
             boxShadow: "0 2px 20px rgba(0,0,0,0.08)"
         }}>
-            <div className="max-w-7xl mx-auto px-6 flex items-center justify-between h-20">
+            <div style={{ maxWidth: 1280, margin: "0 auto", padding: "0 24px", display: "flex", alignItems: "center", justifyContent: "space-between", height: 80 }}>
                 {/* Logo */}
                 <Link href="/" className="flex items-center gap-3">
                     <Image src="/Logo.webp" alt="PetCare+ Logo" width={48} height={48} className="object-contain" />

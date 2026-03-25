@@ -20,7 +20,7 @@ export default function Hero() {
                 zIndex: 0
             }} />
 
-            <div className="max-w-7xl mx-auto px-6 flex flex-col md:flex-row items-center gap-12 relative" style={{ zIndex: 1 }}>
+            <div style={{ maxWidth: 1280, margin: "0 auto", padding: "0 24px", display: "flex", flexDirection: "row", flexWrap: "wrap", alignItems: "center", gap: 48, position: "relative", zIndex: 1 }}>
                 {/* Left Content */}
                 <div style={{ flex: 1, maxWidth: 620 }}>
                     <h1 style={{

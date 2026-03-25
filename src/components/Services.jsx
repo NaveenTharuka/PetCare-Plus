@@ -22,7 +22,7 @@ const features = [
 export default function Services() {
     return (
         <section style={{ background: "#FDFBF7", padding: "100px 0" }}>
-            <div className="max-w-7xl mx-auto px-6">
+            <div style={{ maxWidth: 1280, margin: "0 auto", padding: "0 24px" }}>
                 {/* Heading */}
                 <div style={{ textAlign: "center", marginBottom: 72 }}>
                     <h2 style={{

@@ -1,4 +1,5 @@
 import "./globals.css";
+import NavBar from "../components/NavBar";
 
 export const metadata = {
   title: "PetCare+ | Your Pet Deserves the Best Care",
@@ -8,7 +9,12 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body>{children}</body>
+      <body>
+        <NavBar />
+        <main>
+          {children}
+        </main>
+      </body>
     </html>
   );
 }
