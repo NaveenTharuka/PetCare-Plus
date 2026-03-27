@@ -1,0 +1,31 @@
+/* Hero.module.css - Right Image Section */
+
+/* Right Image Container */
+.imageWrapper {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    position: relative;
+    margin-top: 20px;
+    z-index: 50;
+}
+
+/* Image Box */
+.imageBox {
+    margin-top: 50px;
+    margin-bottom: 50px;
+    position: relative;
+    width: clamp(300px, 30vw, 500px);
+    aspect-ratio: 1/1;
+    border-radius: 45px;
+    overflow: hidden;
+    box-shadow: 10px 10px 18px 0 rgba(0, 0, 0, 0.3);
+    rotate: 4deg;
+}
+
+/* Hero Image */
+.heroImage {
+    object-fit: contain;
+    mix-blend-mode: multiply;
+    border-radius: 50px;
+}

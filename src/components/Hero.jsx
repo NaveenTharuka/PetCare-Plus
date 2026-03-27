@@ -1,7 +1,8 @@
 "use client";
 import Image from "next/image";
-import HeroImage from "../../public/hero-dog.png"
+import HeroImage from "../../public/dog.png"
 import Link from "next/link";
+import styles from "./Hero.module.css"
 
 export default function Hero() {
     return (
@@ -20,7 +21,7 @@ export default function Hero() {
                 zIndex: 0
             }} />
 
-            <div style={{ maxWidth: 1280, margin: "0 auto", padding: "0 24px", display: "flex", flexDirection: "row", flexWrap: "wrap", alignItems: "center", gap: 48, position: "relative", zIndex: 1 }}>
+            <div style={{ maxWidth: 1360, margin: "0 auto", padding: "0 20px", display: "flex", flexDirection: "row", flexWrap: "wrap", alignItems: "center", gap: 48, position: "relative", zIndex: 1 }}>
                 {/* Left Content */}
                 <div style={{ flex: 1, maxWidth: 620 }}>
                     <h1 style={{
@@ -30,7 +31,7 @@ export default function Hero() {
                         lineHeight: 1.08,
                         color: "#92633a",
                         marginBottom: 24,
-                        marginTop: 40
+                        marginTop: 100
                     }}>
                         Your Pet Deserves the Best Care.
                     </h1>
@@ -106,25 +107,13 @@ export default function Hero() {
                 </div>
 
                 {/* Right Image */}
-                <div style={{
-                    flex: 1,
-                    display: "flex",
-                    justifyContent: "center",
-                    position: "relative",
-                    marginTop: "20px"
-                }}>
-                    <div style={{
-                        position: "relative",
-                        width: "clamp(250px, 30vw, 500px)",
-                        aspectRatio: "3/4",
-                        borderRadius: 32,
-                        overflow: "hidden",
-                    }}>
+                <div className={styles.imageWrapper}>
+                    <div className={styles.imageBox}>
                         <Image
+                            className={styles.heroImage}
                             src={HeroImage}
                             alt="Happy pet with PetCare+"
                             fill
-                            style={{ objectFit: "contain", mixBlendMode: "multiply" }}
                             priority
                         />
                     </div>

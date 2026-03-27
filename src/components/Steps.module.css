@@ -1,0 +1,14 @@
+.process {
+    background: #92633a;
+    padding: 48px 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border-radius: 50px;
+}
+
+@media (width < 760px) {
+    .process {
+        display: none;
+    }
+}

@@ -1,4 +1,5 @@
 "use client";
+import styles from "./Steps.module.css";
 
 const steps = [
     {
@@ -33,14 +34,7 @@ export default function Steps() {
                 }}
                 >
                     {/* Left Panel */}
-                    <div style={{
-                        background: "#92633a",
-                        padding: "48px 40px",
-                        display: "flex",
-                        flexDirection: "column",
-                        justifyContent: "center",
-                        borderRadius: "50px"
-                    }}>
+                    <div className={styles.process}>
                         <div style={{
                             fontFamily: "'Niramit', sans-serif",
                             fontWeight: 300,
@@ -81,8 +75,8 @@ export default function Steps() {
                                     transition: "all 0.3s ease",
                                     cursor: "default"
                                 }}
-                                onMouseEnter={e => { e.currentTarget.style.background = "rgba(146,99,58,0.15)"; e.currentTarget.style.transform = "scale(1.08)"; }}
-                                onMouseLeave={e => { e.currentTarget.style.background = "rgba(212,212,212,0.37)"; e.currentTarget.style.transform = "scale(1)"; }}
+                                    onMouseEnter={e => { e.currentTarget.style.background = "rgba(146,99,58,0.15)"; e.currentTarget.style.transform = "scale(1.08)"; }}
+                                    onMouseLeave={e => { e.currentTarget.style.background = "rgba(212,212,212,0.37)"; e.currentTarget.style.transform = "scale(1)"; }}
                                 >
                                     {step.number}
                                 </div>

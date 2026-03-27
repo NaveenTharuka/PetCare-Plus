@@ -2,15 +2,16 @@
 import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import "./NavBar.module.css";
 
 export default function NavBar() {
     const [mobileOpen, setMobileOpen] = useState(false);
 
     return (
-        <nav className="sticky top-0 z-50 w-full" style={{
-            background: "rgba(255,255,255,0.85)",
+        <nav id="navigation" className="sticky top-0 z-50 w-full" style={{
+            background: "rgba(255, 255, 255, 0.7)",
             backdropFilter: "blur(12px)",
-            boxShadow: "0 2px 20px rgba(0,0,0,0.08)"
+            boxShadow: "0 2px 20px rgba(0, 0, 0, 0.08)"
         }}>
             <div style={{ maxWidth: 1280, margin: "0 auto", padding: "0 24px", display: "flex", alignItems: "center", justifyContent: "space-between", height: 80 }}>
                 {/* Logo */}
@@ -73,8 +74,8 @@ export default function NavBar() {
                         padding: "8px 16px",
                         transition: "color 0.2s"
                     }}
-                    onMouseEnter={e => e.target.style.color = "#92633a"}
-                    onMouseLeave={e => e.target.style.color = "#4A3728"}
+                        onMouseEnter={e => e.target.style.color = "#92633a"}
+                        onMouseLeave={e => e.target.style.color = "#4A3728"}
                     >
                         Log In
                     </Link>
@@ -90,8 +91,8 @@ export default function NavBar() {
                         transition: "all 0.25s ease",
                         boxShadow: "0 2px 8px rgba(146,99,58,0.3)"
                     }}
-                    onMouseEnter={e => { e.target.style.background = "#7d5431"; e.target.style.boxShadow = "0 4px 16px rgba(146,99,58,0.45)"; e.target.style.transform = "translateY(-1px)"; }}
-                    onMouseLeave={e => { e.target.style.background = "#92633a"; e.target.style.boxShadow = "0 2px 8px rgba(146,99,58,0.3)"; e.target.style.transform = "translateY(0)"; }}
+                        onMouseEnter={e => { e.target.style.background = "#7d5431"; e.target.style.boxShadow = "0 4px 16px rgba(146,99,58,0.45)"; e.target.style.transform = "translateY(-1px)"; }}
+                        onMouseLeave={e => { e.target.style.background = "#92633a"; e.target.style.boxShadow = "0 2px 8px rgba(146,99,58,0.3)"; e.target.style.transform = "translateY(0)"; }}
                     >
                         Get Started
                     </Link>
