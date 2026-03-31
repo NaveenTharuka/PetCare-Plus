@@ -1,16 +1,66 @@
-/* Remove the @import line - this is now handled by next/font */
-/* @import url('https://fonts.googleapis.com/css2?family=Montserrat+Alternates:wght@400;700;800&family=Catamaran:wght@400;700;800&family=Lunasima&family=Niramit:wght@300;400;700&display=swap'); */
-
 @import "tailwindcss";
 
-:root {
-  --bg-cream: #FDFBF7;
-  --primary-brown: #92633a;
-  --primary-brown-dark: #7d5431;
-  --text-dark: #4A3728;
-  --text-muted: #6c6c6c;
-  --text-gray: #908e8c;
-  --accent-light: rgba(232, 196, 184, 0.29);
+@theme inline {
+  --color-secondary: #705a52;
+  --color-surface-container-high: #e9e8e6;
+  --color-error: #a83836;
+  --color-primary-fixed-dim: #e5b7a7;
+  --color-on-tertiary-fixed-variant: #6f5822;
+  --color-tertiary-fixed: #ffdf9b;
+  --color-surface-container: #efeeeb;
+  --color-on-error: #fff7f6;
+  --color-secondary-fixed-dim: #ebcec4;
+  --color-on-secondary-container: #624d45;
+  --color-outline: #7a7b79;
+  --color-tertiary-fixed-dim: #f0d18e;
+  --color-on-tertiary: #fff8f0;
+  --color-error-container: #fa746f;
+  --color-inverse-on-surface: #9d9d9b;
+  --color-on-error-container: #6e0a12;
+  --color-on-primary-fixed-variant: #69473a;
+  --color-error-dim: #67040d;
+  --color-background: #fbf9f7;
+  --color-surface-container-highest: #e2e3e0;
+  --color-inverse-primary: #f4c4b4;
+  --color-on-surface-variant: #5e5f5d;
+  --color-outline-variant: #b1b2b0;
+  --color-on-background: #313331;
+  --color-surface-tint: #7b5749;
+  --color-primary: #7b5749;
+  --color-tertiary-container: #ffdf9b;
+  --color-primary-dim: #6d4b3e;
+  --color-surface-dim: #dadad7;
+  --color-surface: #fbf9f7;
+  --color-on-surface: #313331;
+  --color-secondary-fixed: #fadcd2;
+  --color-on-tertiary-fixed: #503c07;
+  --color-tertiary-dim: #66501a;
+  --color-surface-container-low: #f5f3f1;
+  --color-on-primary-fixed: #482b20;
+  --color-on-tertiary-container: #644f19;
+  --color-primary-fixed: #f4c4b4;
+  --color-secondary-container: #fadcd2;
+  --color-surface-bright: #fbf9f7;
+  --color-on-secondary: #fff7f5;
+  --color-on-secondary-fixed-variant: #6c574f;
+  --color-on-primary: #fff7f5;
+  --color-tertiary: #735c25;
+  --color-on-primary-container: #5e3e32;
+  --color-inverse-surface: #0d0e0e;
+  --color-surface-variant: #e2e3e0;
+  --color-secondary-dim: #634e47;
+  --color-surface-container-lowest: #ffffff;
+  --color-on-secondary-fixed: #4e3b34;
+  --color-primary-container: #f4c4b4;
+  
+  --font-headline: var(--font-plus-jakarta), sans-serif;
+  --font-body: var(--font-be-vietnam), sans-serif;
+  --font-label: var(--font-be-vietnam), sans-serif;
+  
+  --radius-DEFAULT: 1rem;
+  --radius-lg: 2rem;
+  --radius-xl: 3rem;
+  --radius-full: 9999px;
 }
 
 html {
@@ -18,54 +68,42 @@ html {
 }
 
 body {
-  background: var(--bg-cream);
-  color: var(--text-dark);
-  /* Use Lunasima as the default font via CSS variable */
-  font-family: var(--font-lunasima), sans-serif;
-  overflow-x: hidden;
+  background-color: var(--color-background);
+  color: var(--color-on-surface);
+  font-family: var(--font-body);
 }
 
-/* Use Montserrat Alternates for headings */
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  font-family: var(--font-montserrat-alternates), sans-serif;
+::selection {
+  background-color: var(--color-primary-container);
+  color: var(--color-on-primary-container);
 }
 
-/* Optional: Utility classes for specific fonts */
-.font-catamaran {
-  font-family: var(--font-catamaran), sans-serif;
+.material-symbols-outlined {
+  font-family: 'Material Symbols Outlined';
+  font-weight: normal;
+  font-style: normal;
+  font-size: 24px;
+  display: inline-block;
+  line-height: 1;
+  text-transform: none;
+  letter-spacing: normal;
+  word-wrap: normal;
+  white-space: nowrap;
+  direction: ltr;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  -moz-osx-font-smoothing: grayscale;
+  font-feature-settings: 'liga';
+  font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
 }
 
-.font-niramit {
-  font-family: var(--font-niramit), sans-serif;
+.tonal-layering {
+  box-shadow: none;
 }
-
-.font-montserrat {
-  font-family: var(--font-montserrat-alternates), sans-serif;
+.glass-effect {
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
 }
-
-/* Font weight utilities */
-.font-light {
-  font-weight: 300;
-}
-
-.font-normal {
-  font-weight: 400;
-}
-
-.font-bold {
-  font-weight: 700;
-}
-
-.font-extrabold {
-  font-weight: 800;
-}
-
-@theme inline {
-  --color-background: var(--bg-cream);
-  --color-foreground: var(--text-dark);
+.primary-satin-gradient {
+  background: linear-gradient(135deg, #7b5749 0%, #6d4b3e 100%);
 }

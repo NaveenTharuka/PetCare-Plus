@@ -1,0 +1,32 @@
+.userDashboard {
+    margin: 50px;
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
+    gap: 100px;
+    font-size: 20px;
+    max-width: 1280px;
+    min-width: 900px;
+}
+
+.userPhoto {
+    border-radius: 40px;
+    box-shadow: 10px 10px 15px 0 rgba(0, 0, 0, 0.3);
+    width: 400px;
+    height: 400px;
+    rotate: -3deg;
+}
+
+.address {
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
+    padding: 10px;
+    border-radius: 10px;
+    width: 400px;
+    height: 90px;
+    justify-content: center;
+    align-items: start;
+    background-color: rgb(241, 234, 216);
+    font-weight: 600;
+}

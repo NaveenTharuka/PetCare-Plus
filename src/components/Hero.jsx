@@ -6,7 +6,7 @@ import styles from "./Hero.module.css"
 
 export default function Hero() {
     return (
-        <section style={{ position: "relative", overflow: "hidden", minHeight: "90vh", background: "#FDFBF7" }}>
+        <section style={{ position: "relative", overflow: "hidden", minHeight: "90vh", background: "#FDFBF7", paddingTop: "0" }}>
             {/* Decorative blur glow */}
             <div style={{
                 position: "absolute",
@@ -25,15 +25,15 @@ export default function Hero() {
                 {/* Left Content */}
                 <div style={{ flex: 1, maxWidth: 620 }}>
                     <h1 style={{
-                        fontFamily: "'Montserrat Alternates', sans-serif",
-                        fontWeight: 800,
-                        fontSize: "clamp(2.8rem, 6vw, 5rem)",
+                        fontFamily: "'Plus Jakarta Sans', sans-serif",
+                        fontWeight: 900,
+                        fontSize: "clamp(2.8rem, 6vw, 5.25rem)",
+                        color: "#000010",
                         lineHeight: 1.08,
-                        color: "#92633a",
                         marginBottom: 24,
                         marginTop: 100
                     }}>
-                        Your Pet Deserves the Best Care.
+                        Every Pet has a story. We help you <span style={{ color: "#92633a" }}>care for it</span>
                     </h1>
                     <p style={{
                         fontFamily: "'Lunasima', sans-serif",
@@ -51,7 +51,7 @@ export default function Hero() {
                             fontFamily: "'Lunasima', sans-serif",
                             fontWeight: 600,
                             fontSize: "1.1rem",
-                            background: "#92633a",
+                            background: "#6D4B3E",
                             color: "white",
                             padding: "16px 36px",
                             borderRadius: 36,
