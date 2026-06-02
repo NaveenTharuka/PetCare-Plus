@@ -1,7 +1,6 @@
-
 import PetCard from '@/components/PetCard';
 import getUserById from '@/apiServices/user.api';
-
+import Link from 'next/link';
 
 export default async function UserProfile({ params }) {
   const { id } = await params;
@@ -79,10 +78,10 @@ export default async function UserProfile({ params }) {
           <div className="lg:w-2/3 space-y-8">
             <div className="flex justify-between items-center px-2">
               <h2 className="font-headline text-3xl font-bold text-on-surface">Your Furry Family</h2>
-              <button className="flex items-center gap-2 text-primary font-bold hover:opacity-80 transition-all">
+              <Link href={`/user/${user.id}/pets/new`} className="flex items-center gap-2 text-primary font-bold hover:opacity-80 transition-all">
                 <span className="material-symbols-outlined" data-icon="add_circle">add_circle</span>
                 <span>Add New Pet</span>
-              </button>
+              </Link>
             </div>
 
             {pets.length > 0 ? (

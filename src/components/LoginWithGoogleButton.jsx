@@ -3,7 +3,6 @@
 import { FcGoogle } from "react-icons/fc";
 import styles from "@/app/signup/signup.module.css";
 import { supabase } from "@/apiServices/supabase";
-import { getUserBySupabaseToken } from "@/apiServices/user.api";
 
 export default function LoginWithGoogleButton() {
     const GoogleIcon = <FcGoogle size={24} />

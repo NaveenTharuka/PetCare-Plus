@@ -40,10 +40,13 @@ export default function signup() {
                                 <button type="submit" className={styles.signUpButton}>Create Account</button>
                             </div>
 
-                            <div className="border-t-2 border-gray-300">
+                            <div className="flex justify-center items-center gap-1 mt-2">
+                                <div className="h-px w-32 bg-gray-300 flex-1"></div>
+                                <p className="text-gray-500 px-3 text-sm whitespace-nowrap">Or</p>
+                                <div className="h-px w-32 bg-gray-300 flex-1"></div>
                             </div>
 
-                            <div>
+                            <div className="flex justify-center">
                                 <LoginWithGoogleButton />
                             </div>
 

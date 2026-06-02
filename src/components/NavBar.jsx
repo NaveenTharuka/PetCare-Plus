@@ -2,11 +2,53 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useRouter } from "next/navigation";
 import Logo from "../../public/Logo.png";
+import { useAuth } from "@/auth/AuthProvider";
 
 export default function NavBar() {
+  const pathname = usePathname();
   const router = useRouter();
+  const data = useAuth();
+  const user = data.user;
+
+  const handleOnClick = () => {
+    if (!user) {
+      router.push('/login');
+    } else if (user && pathname === `/user/${user.id}`) {
+      data.logOut();
+      router.push('/');
+    } else if (user) {
+      router.push(`/user/${user.id}`);
+    }
+  };
+
+  const renderButtonContent = () => {
+    if (!user) {
+      return (
+        <span className="material-symbols-outlined" aria-hidden="true">
+          account_circle
+        </span>
+      );
+    }
+
+    if (pathname?.startsWith(`/user/${user.id}`)) {
+      return (
+        <span className="material-symbols-outlined" aria-hidden="true">
+          logout
+        </span>
+      );
+    }
+
+    return (
+      <img
+        src={user.image_url}
+        className="rounded-full w-6 h-6 border border-[#7b5749] object-cover"
+        alt="User avatar"
+      />
+    );
+  };
 
   return (
     <header className="bg-[#fbf9f7]/80 backdrop-blur-md fixed top-0 w-full z-50">
@@ -20,7 +62,7 @@ export default function NavBar() {
           PetCare+
         </div>
 
-        {/* Desktop Navigation Links - Fixed with Link components */}
+        {/* Desktop Navigation Links */}
         <div className="hidden md:flex items-center gap-10">
           {[
             { name: 'Dashboard', path: '/user/1' },
@@ -53,11 +95,9 @@ export default function NavBar() {
           <button
             aria-label="Account"
             className="text-[#7b5749] hover:opacity-80 transition-all cursor-pointer"
-            onClick={() => router.push('/login')}
+            onClick={handleOnClick}
           >
-            <span className="material-symbols-outlined" aria-hidden="true">
-              account_circle
-            </span>
+            {renderButtonContent()}
           </button>
         </div>
       </nav>

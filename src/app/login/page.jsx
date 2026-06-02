@@ -1,4 +1,6 @@
 import styles from "./login.module.css";
+import LoginWithGoogleButton from "@/components/LoginWithGoogleButton";
+
 export default function login() {
     return (
         <>
@@ -19,8 +21,19 @@ export default function login() {
                                     <input type="password" placeholder=" 🔒 john@1234" className={styles.formInput} />
                                 </div>
 
-                                <div className="flex justify-center">
+                                <div className="flex justify-center mt-4">
                                     <button type="submit" className={styles.signUpButton}>Login</button>
+                                </div>
+
+                                <div className="flex justify-center items-center gap-1 mt-2">
+                                    <div className="h-px w-32 bg-gray-300 flex-1"></div>
+                                    <p className="text-gray-500 px-3 text-sm whitespace-nowrap">Or</p>
+                                    <div className="h-px w-32 bg-gray-300 flex-1"></div>
+                                </div>
+
+
+                                <div className="flex justify-center">
+                                    <LoginWithGoogleButton />
                                 </div>
 
                             </form>
