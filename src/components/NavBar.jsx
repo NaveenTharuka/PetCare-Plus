@@ -23,10 +23,10 @@ export default function NavBar() {
         {/* Desktop Navigation Links - Fixed with Link components */}
         <div className="hidden md:flex items-center gap-10">
           {[
-            { name: 'Dashboard', path: '/dashboard' },
-            { name: 'Pets', path: '/pets' },
+            { name: 'Dashboard', path: '/user/1' },
+            { name: 'Pets', path: '/user/1/pets' },
             { name: 'Services', path: '/services' },
-            { name: 'Store', path: '/store' }
+            { name: 'Store', path: '#' }
           ].map((item) => (
             <Link
               key={item.name}

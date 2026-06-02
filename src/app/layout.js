@@ -2,6 +2,7 @@ import { Plus_Jakarta_Sans, Be_Vietnam_Pro } from 'next/font/google';
 import "./globals.css";
 import NavBar from "../components/NavBar";
 import Footer from "../components/Footer";
+import { AuthProvider } from '@/auth/AuthProvider';
 
 // Configure Plus Jakarta Sans
 const plusJakartaSans = Plus_Jakarta_Sans({
@@ -34,9 +35,12 @@ export default function RootLayout({ children }) {
         <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
       </head>
       <body className="bg-background text-on-surface font-body selection:bg-primary-container selection:text-on-primary-container">
-        <NavBar />
-        {children}
-        <Footer />
+        <AuthProvider>
+          <NavBar />
+          {children}
+          <Footer />
+
+        </AuthProvider>
       </body>
     </html>
   );

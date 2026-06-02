@@ -1,0 +1,437 @@
+/* pet.module.css */
+
+.main {
+    padding-top: 100px;
+    padding-bottom: 100px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+    background-color: var(--color-background);
+}
+
+.header {
+    text-align: left;
+    width: 100%;
+    max-width: 800px;
+    margin-bottom: 30px;
+}
+
+.headerTitle {
+    font-size: 32px;
+    font-weight: 700;
+    color: var(--color-on-background);
+    margin-bottom: 10px;
+}
+
+.headerSub {
+    color: var(--color-on-surface-variant);
+    font-size: 16px;
+    line-height: 1.5;
+    max-width: 600px;
+}
+
+/* Form Card */
+.formCard {
+    background-color: var(--color-surface-container-low, #f5f3f1);
+    border-radius: 30px;
+    padding: 50px;
+    width: 100%;
+    max-width: 800px;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.02);
+}
+
+.decorativeCorner {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 120px;
+    height: 120px;
+    background-color: #f7e9d7;
+    /* Light beige matching image */
+    border-bottom-left-radius: 100px;
+    z-index: 0;
+}
+
+.formElement {
+    position: relative;
+    z-index: 1;
+}
+
+/* Photo Upload Section */
+.photoSection {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 30px;
+    margin-bottom: 40px;
+}
+
+.photoUploadContainer {
+    position: relative;
+}
+
+.photoBox {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 120px;
+    height: 120px;
+    background-color: #e2e3e0;
+    border-radius: 30px;
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+.editIcon {
+    position: absolute;
+    bottom: -5px;
+    right: -5px;
+    background-color: #7b5749;
+    /* Brown color */
+    border-radius: 50%;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 3px solid var(--color-surface-container-low, #f5f3f1);
+}
+
+.uploadInput {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    cursor: pointer;
+    z-index: 2;
+}
+
+.photoInfo {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.photoTitle {
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--color-on-background);
+    margin: 0;
+}
+
+.photoDesc {
+    font-size: 14px;
+    color: var(--color-on-surface-variant);
+    margin: 0 0 10px 0;
+    line-height: 1.4;
+}
+
+.galleryButton {
+    background: none;
+    border: none;
+    color: #7b5749;
+    font-weight: 600;
+    font-size: 14px;
+    padding: 0;
+    cursor: pointer;
+    text-align: left;
+}
+
+.galleryButton:hover {
+    text-decoration: underline;
+}
+
+/* Grid Layout */
+.formBasicFields {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 25px 30px;
+}
+
+.formRow {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.label {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--color-on-surface-variant);
+    margin-left: 5px;
+}
+
+.input {
+    border-radius: 20px;
+    padding: 15px 20px;
+    width: 100%;
+    height: 50px;
+    border: none;
+    background-color: #e2e3e0;
+    /* Gray background for inputs */
+    font-size: 15px;
+    color: var(--color-on-background);
+    transition: all 0.2s ease;
+    box-sizing: border-box;
+}
+
+.input::placeholder {
+    color: #9d9d9b;
+}
+
+.input:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px #7b5749;
+}
+
+/* Select dropdown styling */
+select.input {
+    appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%237a7b79' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: right 15px center;
+    background-size: 16px;
+    cursor: pointer;
+}
+
+/* Input with Suffix */
+.inputWithSuffix {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.suffix {
+    position: absolute;
+    right: 20px;
+    color: var(--color-on-surface-variant);
+    font-size: 15px;
+    pointer-events: none;
+}
+
+/* Gender Toggle Buttons */
+.genderToggle {
+    display: flex;
+    gap: 10px;
+    height: 50px;
+}
+
+.genderButton {
+    flex: 1;
+    border-radius: 20px;
+    border: none;
+    background-color: #e2e3e0;
+    color: var(--color-on-surface-variant);
+    font-size: 15px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.genderActive {
+    background-color: #d1d2ce;
+    /* Slightly darker gray to indicate active */
+    color: var(--color-on-background);
+    font-weight: 600;
+}
+
+/* Toggle Switch Row */
+.toggleRow {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-top: 30px;
+    margin-bottom: 40px;
+}
+
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 46px;
+    height: 24px;
+}
+
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #e2e3e0;
+    transition: .4s;
+    border-radius: 24px;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 18px;
+    width: 18px;
+    left: 3px;
+    bottom: 3px;
+    background-color: white;
+    transition: .4s;
+    border-radius: 50%;
+}
+
+input:checked+.slider {
+    background-color: #7b5749;
+}
+
+input:checked+.slider:before {
+    transform: translateX(22px);
+}
+
+.toggleLabel {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--color-on-surface-variant);
+}
+
+/* Button Row */
+.buttonRow {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+}
+
+.submitButton {
+    background-color: #7b5749;
+    color: white;
+    border: none;
+    border-radius: 25px;
+    padding: 15px 30px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    flex: 2;
+    height: 50px;
+}
+
+.submitButton:hover {
+    background-color: #6d4b3e;
+}
+
+.cancelButton {
+    background-color: #e2e3e0;
+    color: var(--color-on-background);
+    border: none;
+    border-radius: 25px;
+    padding: 15px 30px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    flex: 1;
+    height: 50px;
+}
+
+.cancelButton:hover {
+    background-color: #d1d2ce;
+}
+
+/* Info Cards */
+.infoCardsContainer {
+    display: flex;
+    gap: 20px;
+    margin-top: 30px;
+    width: 100%;
+    max-width: 800px;
+}
+
+.infoCardPink,
+.infoCardGray {
+    flex: 1;
+    border-radius: 30px;
+    padding: 30px;
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+}
+
+.infoCardPink {
+    background-color: #faebe9;
+    /* Light pink background */
+}
+
+.infoCardGray {
+    background-color: #f5f3f1;
+    /* Light gray background */
+}
+
+.infoIconContainerPink {
+    background-color: #8cc6b6;
+    /* Teal color for the icon container */
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    min-width: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.infoIconContainerGray {
+    width: 40px;
+    height: 40px;
+    min-width: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.infoCardTitle {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--color-on-background);
+    margin: 0 0 8px 0;
+}
+
+.infoCardDesc {
+    font-size: 14px;
+    color: var(--color-on-surface-variant);
+    margin: 0;
+    line-height: 1.5;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .main {
+        padding: 20px;
+    }
+
+    .formCard {
+        padding: 30px 20px;
+    }
+
+    .formBasicFields {
+        grid-template-columns: 1fr;
+    }
+
+    .buttonRow {
+        flex-direction: column;
+    }
+
+    .submitButton,
+    .cancelButton {
+        width: 100%;
+        flex: none;
+    }
+
+    .infoCardsContainer {
+        flex-direction: column;
+    }
+}

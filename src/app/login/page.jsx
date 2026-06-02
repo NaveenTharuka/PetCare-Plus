@@ -25,7 +25,7 @@ export default function login() {
 
                             </form>
                             <div className={styles.loginLink}>
-                                <p>Don't have an account? <a href="/signup" className="text-blue-500">Sign Up</a></p>
+                                <p>Don&apos;t have an account? <a href="/signup" className="text-blue-500">Sign Up</a></p>
                             </div>
                         </div>
                     </div>

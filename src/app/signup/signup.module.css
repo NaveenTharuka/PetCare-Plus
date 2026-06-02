@@ -14,11 +14,33 @@ body {
     outline: 1px solid #92633a;
 }
 
+.googleSignIn {
+    border-radius: 50px;
+    margin-top: 10px;
+    padding: 10px 20px;
+    width: 100%;
+    color: black;
+    background-color: white;
+    box-shadow: 10px 10px 15px 0 rgba(0, 0, 0, 0.1);
+    gap: 10px;
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    transition: all 0.2s ease;
+}
+
+.googleSignIn:hover {
+    background-color: #966335;
+    color: rgb(255, 255, 255);
+    cursor: pointer;
+    box-shadow: 10px 10px 20px 0 rgba(0, 0, 0, 0.2);
+}
+
 .signUpButton {
     border-radius: 50px;
     margin-top: 10px;
     padding: 10px 20px;
-    width: 150px;
+    width: 100%;
     background-color: #92633a;
     color: white;
 }

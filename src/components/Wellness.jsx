@@ -32,7 +32,7 @@ export default function Wellness() {
                             fontFamily: "'Catamaran', sans-serif",
                             fontWeight: 800,
                         }}>Smart Reminders</h1>
-                        <p className={styles.rightTopDesc}>Never miss a vaccination or deworming schedule again. Get timely alerts and track your pet's preventive care</p>
+                        <p className={styles.rightTopDesc}>Never miss a vaccination or deworming schedule again. Get timely alerts and track your pet&apos;s preventive care</p>
                     </div>
                     <div className={styles.rightBottom}>
                         <div className={styles.rightBottomLeft}>

@@ -1,18 +1,26 @@
 "use client";
 
-import { navigate } from "next/dist/client/components/segment-cache/navigation";
-import Link from "next/link";
+import { supabase } from '@/apiServices/supabase';
+import getUserById from '@/apiServices/user.api';
+import { useAuth } from '@/auth/AuthProvider';
 import { useRouter } from 'next/navigation';
-
+import { useEffect } from 'react';
 
 export default function LandingPage() {
+
+  const user = useAuth();
+
+
+  useEffect(() => {
+    console.log(user);
+  })
 
   const router = useRouter();
 
   return (
     <main className="pt-20">
       {/* Hero Section */}
-      <section className="px-8 py-20 md:py-32 max-w-screen-2xl mx-auto overflow-hidden">
+      <section className="px-8 py-20 md:py-15 max-w-screen-2xl mx-auto overflow-hidden">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
           <div className="lg:col-span-6 space-y-10">
             <h1 className="font-headline text-5xl md:text-7xl font-extrabold tracking-tight text-on-surface leading-[1.1]">
