@@ -64,8 +64,8 @@ export default function Services() {
                             transform: "rotate(-3deg)",
                             transition: "transform 0.3s ease"
                         }}
-                        onMouseEnter={e => e.currentTarget.style.transform = "rotate(-3deg) scale(1.03)"}
-                        onMouseLeave={e => e.currentTarget.style.transform = "rotate(-3deg)"}
+                            onMouseEnter={e => e.currentTarget.style.transform = "rotate(-3deg) scale(1.03)"}
+                            onMouseLeave={e => e.currentTarget.style.transform = "rotate(-3deg)"}
                         >
                             <Image src="/victor-g-N04FIfHhv_k-unsplash.jpg" alt="Pet 1" fill style={{ objectFit: "cover" }} />
                         </div>
@@ -82,8 +82,8 @@ export default function Services() {
                             transform: "rotate(9deg)",
                             transition: "transform 0.3s ease"
                         }}
-                        onMouseEnter={e => e.currentTarget.style.transform = "rotate(9deg) scale(1.03)"}
-                        onMouseLeave={e => e.currentTarget.style.transform = "rotate(9deg)"}
+                            onMouseEnter={e => e.currentTarget.style.transform = "rotate(9deg) scale(1.03)"}
+                            onMouseLeave={e => e.currentTarget.style.transform = "rotate(9deg)"}
                         >
                             <Image src="/pauline-loroy-U3aF7hgUSrk-unsplash.jpg" alt="Pet 2" fill style={{ objectFit: "cover" }} />
                         </div>
@@ -100,8 +100,8 @@ export default function Services() {
                             transform: "rotate(-4deg)",
                             transition: "transform 0.3s ease"
                         }}
-                        onMouseEnter={e => e.currentTarget.style.transform = "rotate(-4deg) scale(1.03)"}
-                        onMouseLeave={e => e.currentTarget.style.transform = "rotate(-4deg)"}
+                            onMouseEnter={e => e.currentTarget.style.transform = "rotate(-4deg) scale(1.03)"}
+                            onMouseLeave={e => e.currentTarget.style.transform = "rotate(-4deg)"}
                         >
                             <Image src="/oscar-sutton-yihlaRCCvd4-unsplash.jpg" alt="Pet 3" fill style={{ objectFit: "cover" }} />
                         </div>

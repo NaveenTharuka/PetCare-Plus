@@ -1,0 +1,210 @@
+import React from 'react';
+import Image from 'next/image';
+import styles from './page.module.css';
+import ReportCard from '@/components/ReportCard';
+import VaccineCard from '@/components/VaccineCard';
+import { getPetById } from '@/apiServices/pet.api';
+import ErrorMsg from '@/components/ErrorMsg';
+
+export default async function PetProfilePage({ params }) {
+
+    const { petId } = await params;
+    const pet = await getPetById(petId);
+
+    const reports = pet?.reports;
+    const vaccines = pet?.vaccinations;
+
+    const age = new Date().getFullYear() - new Date(pet?.date_of_birth).getFullYear();
+
+    return (
+        pet ? (<div className={styles.pageContainer}>
+            <div className={styles.contentWrapper}>
+                {/* Top Section */}
+                <div className={styles.topSection}>
+                    <div className={styles.profileInfo}>
+                        <p className={styles.profileLabel}>
+                            Companion Profile
+                        </p>
+                        <h1 className={styles.profileName}>
+                            {pet.name}
+                        </h1>
+
+                        <div className={styles.statsContainer}>
+                            <div>
+                                <p className={styles.statLabel}>Breed</p>
+                                <p className={styles.statValue}>{pet.breed}</p>
+                            </div>
+                            <div>
+                                <p className={styles.statLabel}>Age</p>
+                                <p className={styles.statValue}>{age} Years</p>
+                            </div>
+                            <div>
+                                <p className={styles.statLabel}>Weight</p>
+                                <p className={styles.statValue}>{pet.weight}Kg</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div className={styles.imageContainer}>
+                        <div className={styles.imageWrapper}>
+                            <Image
+                                src={pet.image_url}
+                                alt={pet.name}
+                                width={600}
+                                height={450}
+                                className={styles.image}
+                            />
+                        </div>
+                        <div className={styles.statusBadge}>
+                            <span className={`material-symbols-outlined ${styles.statusIcon}`}>favorite</span>
+                            <span className={styles.statusText}>Status: Healthy</span>
+                        </div>
+                    </div>
+                </div>
+
+                {/* Middle Section - Cards */}
+                <div className={styles.cardsGrid}>
+                    {/* Health Reports */}
+                    <div className={styles.card}>
+                        <div className={styles.cardHeader}>
+                            <div className={styles.cardTitleGroup}>
+                                <h2 className={styles.cardTitle}>Health Reports</h2>
+                                <div className={styles.cardDash}></div>
+                            </div>
+                            <span className={`material-symbols-outlined ${styles.cardIcon}`}>snippet_folder</span>
+                        </div>
+
+                        <div className={styles.reportsList}>
+                            {reports ? (reports.map((report) => (
+                                <ReportCard report={report} key={report.id} />
+                            ))) : <div className={styles.noReports}>No reports found</div>}
+                        </div>
+                    </div>
+
+                    {/* Vaccination History */}
+                    <div className={styles.card}>
+                        <div className={styles.cardHeader}>
+                            <div className={styles.cardTitleGroup}>
+                                <h2 className={styles.cardTitle}>Vaccination History</h2>
+                                <div className={styles.cardDash}></div>
+                            </div>
+                            <span className={`material-symbols-outlined ${styles.cardIcon}`}>vaccines</span>
+                        </div>
+
+                        <div className={styles.vaxList}>
+                            {vaccines ? (vaccines.map((vax, idx) => (
+                                <VaccineCard vax={vax} key={idx} />
+                            ))) : <div className={styles.noReports}>No vaccines found</div>}
+                        </div>
+                    </div>
+
+                    {/* Vet Visit History */}
+                    <div className={styles.card}>
+                        <div className={styles.cardHeader}>
+                            <div className={styles.cardTitleGroup}>
+                                <h2 className={styles.cardTitle}>Vet Visit History</h2>
+                                <div className={styles.cardDash}></div>
+                            </div>
+                            <span className={`material-symbols-outlined ${styles.cardIcon}`}>medical_services</span>
+                        </div>
+
+                        <div className={styles.vetVisitsList}>
+                            {[
+                                {
+                                    date: 'SEP 12, 2024',
+                                    type: 'Routine Check-up',
+                                    title: 'Paws & Claws Clinic',
+                                    notes: 'Heart and lungs clear. Recommended slightly more activity to maintain weight.',
+                                    dotColor: 'bg-[#7b5749]'
+                                },
+                                {
+                                    date: 'JUN 05, 2024',
+                                    type: 'Minor Injury',
+                                    title: 'Emergency Care East',
+                                    notes: 'Minor paw laceration treated. Cleaned and bandaged. Antibiotics course completed.',
+                                    dotColor: 'bg-outline-variant'
+                                },
+                                {
+                                    date: 'JAN 18, 2024',
+                                    type: 'Consultation',
+                                    title: 'Dr. Aris Private Practice',
+                                    notes: 'Discussion on specialized dietary needs for Golden Retrievers.',
+                                    dotColor: 'bg-outline-variant'
+                                }
+                            ].map((visit, idx) => (
+                                <div key={idx} className={styles.vetVisitItem}>
+                                    <div className={`${styles.vetVisitDot} ${visit.dotColor}`}></div>
+                                    <div>
+                                        <p className={styles.vetVisitDateType}>
+                                            {visit.date} <span className={styles.vetVisitSeparator}>•</span> {visit.type}
+                                        </p>
+                                        <p className={styles.vetVisitTitle}>{visit.title}</p>
+                                        <p className={styles.vetVisitNotes}>{visit.notes}</p>
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+                </div>
+
+                {/* Bottom Section - Weight History */}
+                <div className={styles.weightSection}>
+                    <div className={styles.weightHeader}>
+                        <div>
+                            <h2 className={styles.weightTitle}>Weight History</h2>
+                            <p className={styles.weightSubtitle}>Monitoring consistent health stability over time.</p>
+                        </div>
+                        <div className={styles.weightToggles}>
+                            <button className={styles.weightToggleBtn}>6M</button>
+                            <button className={styles.weightToggleBtnActive}>1Y</button>
+                        </div>
+                    </div>
+
+                    <div className={styles.chartArea}>
+                        {/* JAN */}
+                        <div className={styles.chartColumn}>
+                            <div className={styles.barGray28}></div>
+                        </div>
+                        {/* MAR */}
+                        <div className={styles.chartColumn}>
+                            <div className={styles.barGray28}></div>
+                        </div>
+                        {/* MAY */}
+                        <div className={styles.chartColumn}>
+                            <div className={styles.barGray28}></div>
+                        </div>
+                        {/* JUL */}
+                        <div className={styles.chartColumn}>
+                            <div className={styles.barGray28}></div>
+                        </div>
+                        {/* SEP */}
+                        <div className={styles.chartColumn}>
+                            <div className={styles.barGray32}></div>
+                        </div>
+                        {/* NOV */}
+                        <div className={styles.chartColumn}>
+                            <div className={styles.barTooltip}>
+                                32.5kg
+                            </div>
+                            <div className={styles.barBrown}></div>
+                        </div>
+                    </div>
+
+                    {/* X-Axis Labels */}
+                    <div className={styles.xAxis}>
+                        {['JAN', 'MAR', 'MAY', 'JUL', 'SEP', 'NOV'].map((month, idx) => (
+                            <div key={idx} className={styles.xAxisLabel}>
+                                {month}
+                            </div>
+                        ))}
+                    </div>
+                </div>
+            </div>
+
+            {/* Floating Action Button */}
+            <button className={styles.fab}>
+                <span className={`material-symbols-outlined ${styles.fabIcon}`}>add</span>
+            </button>
+        </div>) : (<ErrorMsg message="Pet not found"></ErrorMsg>)
+    );
+}

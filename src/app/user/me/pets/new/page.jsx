@@ -15,7 +15,10 @@ export default function AddPet({ params }) {
         const data = Object.fromEntries(formData.entries());
         const response = await addPet(data, id);
 
-        await addPetPicture(response.id, image);
+        if (image) {
+            await addPetPicture(response.id, image);
+        }
+        window.location.href = `/user/${id}`;
     }
 
     return (

@@ -19,7 +19,7 @@ export async function getUserBySupabaseToken(token) {
         })
         return response.data;
     } catch (error) {
-        console.error("Error fetching user by supabase token:", error);
+        console.error("Error fetching user by supabase token:");
         return null;
     }
 }

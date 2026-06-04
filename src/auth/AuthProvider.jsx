@@ -60,7 +60,6 @@ export function AuthProvider({ children }) {
             listener.subscription.unsubscribe();
         };
     }, []);
-
     const logOut = async () => {
         await supabase.auth.signOut();
         setUser(null);
@@ -69,7 +68,8 @@ export function AuthProvider({ children }) {
     return (
         <AuthContext.Provider value={{
             user,
-            logOut
+            logOut,
+            loading
         }}>
             {children}
         </AuthContext.Provider>

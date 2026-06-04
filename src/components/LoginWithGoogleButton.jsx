@@ -13,6 +13,9 @@ export default function LoginWithGoogleButton() {
                 provider: 'google',
                 options: {
                     redirectTo: 'http://localhost:3000',
+                    queryParams: {
+                        prompt: 'select_account'
+                    }
                 }
             })
 

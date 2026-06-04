@@ -1,0 +1,562 @@
+/* Pet Profile Page Module CSS - Plain CSS, no Tailwind */
+
+.pageContainer {
+  min-height: 100vh;
+  padding-bottom: 6rem;
+  position: relative;
+  margin-top: 40px;
+}
+
+.contentWrapper {
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 2rem;
+  padding-top: 3rem;
+}
+
+/* ── Top Section ───────────────────────────────────────────── */
+.topSection {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 3rem;
+  gap: 2rem;
+}
+
+@media (min-width: 768px) {
+  .topSection {
+    flex-direction: row;
+    align-items: flex-end;
+  }
+}
+
+.profileInfo {
+  flex: 1;
+}
+
+.profileLabel {
+  font-size: 0.875rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: var(--color-secondary-dim);
+  margin-bottom: 0.5rem;
+}
+
+.profileName {
+  font-size: 4.5rem;
+  font-family: var(--font-headline);
+  font-weight: 800;
+  color: var(--color-on-surface);
+  margin-bottom: 2rem;
+  letter-spacing: -0.025em;
+  margin-top: 0;
+}
+
+.statsContainer {
+  display: flex;
+  gap: 3rem;
+}
+
+.statLabel {
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--color-outline);
+  margin-bottom: 0.25rem;
+}
+
+.statValue {
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: var(--color-on-surface);
+}
+
+.imageContainer {
+  position: relative;
+  width: 100%;
+  flex-shrink: 0;
+}
+
+@media (min-width: 768px) {
+  .imageContainer {
+    width: 480px;
+  }
+}
+
+.imageWrapper {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  border-radius: 32px;
+  overflow: hidden;
+}
+
+.image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.statusBadge {
+  position: absolute;
+  bottom: -1rem;
+  left: 1.5rem;
+  background-color: var(--color-tertiary-fixed);
+  color: var(--color-on-tertiary-fixed);
+  font-weight: 700;
+  padding: 0.5rem 1.25rem;
+  border-radius: 9999px;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.statusIcon {
+  font-size: 18px;
+}
+
+.statusText {
+  font-size: 0.875rem;
+}
+
+/* ── Middle Section ────────────────────────────────────────── */
+.cardsGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+@media (min-width: 1024px) {
+  .cardsGrid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.card {
+  background-color: var(--color-surface-container-low);
+  border-radius: 32px;
+  padding: 2rem;
+}
+
+.cardHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+.cardTitleGroup {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.cardTitle {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--color-on-surface);
+}
+
+.cardDash {
+  width: 1.5rem;
+  height: 0.25rem;
+  border-radius: 9999px;
+  background-color: #e8c6bc;
+}
+
+.cardIcon {
+  color: var(--color-outline);
+}
+
+/* ── Health Reports ────────────────────────────────────────── */
+
+.reportsList {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.reportItem {
+  background-color: var(--color-surface-container-lowest);
+  border-radius: 24px;
+  padding: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  transition: all 0.2s ease-in-out;
+  box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.1);
+}
+
+.reportItem:hover {
+  cursor: pointer;
+  transform: scale(1.1);
+}
+
+.reportIconWrapper {
+  width: 3rem;
+  height: 3rem;
+  border-radius: 9999px;
+  background-color: #ffedea;
+  color: #d65f50;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.reportInfo {
+  flex: 1;
+}
+
+.reportTitle {
+  font-weight: 700;
+  font-size: 0.875rem;
+  color: var(--color-on-surface);
+}
+
+.reportDate {
+  font-size: 11px;
+  color: var(--color-outline);
+  margin-top: 0.25rem;
+  font-weight: 500;
+}
+
+.reportDownloadBtn {
+  width: 2rem;
+  height: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-outline);
+  background: none;
+  border: none;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.reportDownloadBtn:hover {
+  color: var(--color-on-surface);
+}
+
+.downloadIcon {
+  font-size: 20px;
+}
+
+/* ── Vaccination History ───────────────────────────────────── */
+.vaxList {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.vaxItem {
+  background-color: var(--color-surface-container-lowest);
+  border-radius: 24px;
+  padding: 1.25rem;
+  transition: all 0.2s ease-in-out;
+  box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.1);
+}
+
+.vaxItem:hover {
+  cursor: pointer;
+  transform: scale(1.1);
+}
+
+.vaxHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 1rem;
+}
+
+.vaxTitle {
+  font-weight: 700;
+  color: var(--color-on-surface);
+}
+
+.vaxClinic {
+  font-size: 11px;
+  color: var(--color-outline);
+  font-weight: 500;
+  margin-top: 0.25rem;
+}
+
+.vaxBadge {
+  background-color: #e7f7ed;
+  color: #1e8b49;
+  font-size: 10px;
+  font-weight: 700;
+  padding: 0.25rem 0.75rem;
+  border-radius: 9999px;
+  letter-spacing: 0.05em;
+}
+
+.vaxDatesGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.vaxDateLabel {
+  font-size: 10px;
+  font-weight: 700;
+  color: var(--color-outline);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 0.25rem;
+}
+
+.vaxDateValue {
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: var(--color-on-surface);
+}
+
+.vaxNotes {
+  font-size: 0.75rem;
+  color: var(--color-outline);
+  font-style: italic;
+}
+
+/* ── Vet Visit History ─────────────────────────────────────── */
+.vetVisitsList {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  padding-left: 0.5rem;
+}
+
+.vetVisitItem {
+  position: relative;
+  display: flex;
+  gap: 1.5rem;
+}
+
+.vetVisitDot {
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 9999px;
+  margin-top: 0.375rem;
+  flex-shrink: 0;
+}
+
+.vetVisitDateType {
+  font-size: 10px;
+  font-weight: 700;
+  color: var(--color-outline);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 0.25rem;
+}
+
+.vetVisitSeparator {
+  color: var(--color-outline-variant);
+  margin: 0 0.25rem;
+}
+
+.vetVisitTitle {
+  font-weight: 700;
+  font-size: 0.875rem;
+  color: var(--color-on-surface);
+  margin-bottom: 0.5rem;
+}
+
+.vetVisitNotes {
+  font-size: 0.75rem;
+  color: var(--color-outline);
+  line-height: 1.625;
+}
+
+/* ── Bottom Section – Weight History ──────────────────────── */
+.weightSection {
+  background-color: var(--color-surface-container-lowest);
+  border-radius: 32px;
+  padding: 2rem;
+}
+
+@media (min-width: 768px) {
+  .weightSection {
+    padding: 2.5rem;
+  }
+}
+
+.weightHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 3rem;
+}
+
+.weightTitle {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--color-on-surface);
+  margin-bottom: 0.5rem;
+  margin-top: 0;
+}
+
+.weightSubtitle {
+  font-size: 0.875rem;
+  color: var(--color-outline);
+  font-weight: 500;
+}
+
+.weightToggles {
+  display: flex;
+  background-color: var(--color-surface-container-low);
+  border-radius: 9999px;
+  padding: 0.25rem;
+}
+
+.weightToggleBtn {
+  padding: 0.5rem 1.25rem;
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--color-on-surface);
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.weightToggleBtnActive {
+  padding: 0.5rem 1.25rem;
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  background-color: #7b5749;
+  color: #ffffff;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.chartArea {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  height: 12rem;
+  padding: 0 1rem;
+}
+
+@media (min-width: 768px) {
+  .chartArea {
+    height: 14rem;
+    padding: 0 2rem;
+  }
+}
+
+.chartColumn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  width: 16.6667%;
+  position: relative;
+}
+
+.barGray28 {
+  width: 100%;
+  max-width: 80px;
+  height: 7rem;
+  background-color: var(--color-surface-container-low);
+  border-radius: 40px 40px 0 0;
+}
+
+.barGray32 {
+  width: 100%;
+  max-width: 80px;
+  height: 8rem;
+  background-color: var(--color-surface-container-low);
+  border-radius: 40px 40px 0 0;
+}
+
+.barBrown {
+  width: 100%;
+  max-width: 80px;
+  height: 11rem;
+  background-color: #7b5749;
+  border-radius: 40px 40px 0 0;
+}
+
+@media (min-width: 768px) {
+  .barBrown {
+    height: 12rem;
+  }
+}
+
+.barTooltip {
+  position: absolute;
+  top: -3rem;
+  background-color: #313331;
+  color: #ffffff;
+  font-size: 11px;
+  font-weight: 700;
+  padding: 0.375rem 1rem;
+  border-radius: 9999px;
+  white-space: nowrap;
+}
+
+.xAxis {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 1rem;
+  margin-top: 1.5rem;
+}
+
+@media (min-width: 768px) {
+  .xAxis {
+    padding: 0 2rem;
+  }
+}
+
+.xAxisLabel {
+  width: 16.6667%;
+  text-align: center;
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--color-outline-variant);
+  letter-spacing: 0.05em;
+}
+
+/* ── Floating Action Button ────────────────────────────────── */
+.fab {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  width: 60px;
+  height: 60px;
+  background-color: #7b5749;
+  color: #ffffff;
+  border-radius: 9999px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 8px 20px rgba(123, 87, 73, 0.3);
+  border: none;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.fab:hover {
+  transform: scale(1.05);
+}
+
+.fabIcon {
+  font-size: 32px;
+}
+
+.noReports {
+  font-size: 14px;
+  text-align: center;
+  padding: 2rem;
+  color: var(--color-outline-variant);
+  font-weight: 700;
+}

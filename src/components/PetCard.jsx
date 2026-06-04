@@ -3,16 +3,20 @@ import { deletePet } from "@/apiServices/pet.api";
 import { useRouter } from "next/navigation";
 
 
-export default function Petcard(pet) {
+export default function Petcard({ userId, ...pet }) {
     const router = useRouter();
     async function handleDeletePet(pet) {
         await deletePet(pet);
         router.refresh();
     }
 
+    const handleHealth = () => {
+        router.push(`/user/me/pets/${pet.id}`)
+    }
+
     const birthDate = pet.date_of_birth ? new Date(pet.date_of_birth) : null;
-    const age = birthDate && !isNaN(birthDate.getTime()) 
-        ? new Date().getFullYear() - birthDate.getFullYear() 
+    const age = birthDate && !isNaN(birthDate.getTime())
+        ? new Date().getFullYear() - birthDate.getFullYear()
         : "N/A";
 
     const lastVisitDate = pet.last_vet_visit ? new Date(pet.last_vet_visit) : null;
@@ -51,7 +55,7 @@ export default function Petcard(pet) {
                     </div>
                 </div>
                 <div className="flex gap-4">
-                    <button className="bg-secondary-container text-on-secondary-container px-6 py-2 rounded-full text-sm font-bold hover:opacity-80 transition-all">Health Log</button>
+                    <button className="bg-secondary-container text-on-secondary-container px-6 py-2 rounded-full text-sm font-bold hover:opacity-80 transition-all" onClick={handleHealth}>Health Log</button>
                     <button className="bg-surface-container-high text-on-surface-variant px-6 py-2 rounded-full text-sm font-bold hover:bg-surface-container-highest transition-all">Edit Profile</button>
                 </div>
             </div>

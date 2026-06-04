@@ -1,19 +1,12 @@
 "use client";
 
-import { supabase } from '@/apiServices/supabase';
-import getUserById from '@/apiServices/user.api';
+import Loader from './Loader';
 import { useAuth } from '@/auth/AuthProvider';
 import { useRouter } from 'next/navigation';
-import { useEffect } from 'react';
 
 export default function LandingPage() {
 
-  const user = useAuth();
-
-
-  useEffect(() => {
-    console.log(user);
-  })
+  const { loading } = useAuth();
 
   const router = useRouter();
 
@@ -40,7 +33,7 @@ export default function LandingPage() {
           </div>
           <div className="lg:col-span-6 relative">
             <div className="relative z-10 rounded-xl overflow-hidden shadow-2xl transform rotate-2">
-              <img className="w-full aspect-[4/3] object-cover rounded-xl" alt="happy golden retriever dog smiling warmly with soft afternoon sunlight illuminating its golden fur in a cozy living room" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDZL37Al2gpUhONVU6VFIWmnnAzhRU98XdGyYyvLeAExKTN0Flsae-YsAF6Qg1UPwqd-38ty3lIApgxN_yEhibsumFGA8fAaPAfqTHMJ8MfMKm5EQ6Ul7r2CwPkDLu57YjS6Vqtpr6ZTm73N08LRLVtpfSR2UgfUxWJDLUNQjnEIRrZrEsk_Y-f9GgAIq-vGZuZGVFxTslaqidl241i7iohJRiKYxW4ncP4BkEH_daNTgZRsx9HfGkuniGWHj9kCn3Qt3j5vG-wMtE" />
+              <img className="w-full aspect-4/3 object-cover rounded-xl" alt="happy golden retriever dog smiling warmly with soft afternoon sunlight illuminating its golden fur in a cozy living room" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDZL37Al2gpUhONVU6VFIWmnnAzhRU98XdGyYyvLeAExKTN0Flsae-YsAF6Qg1UPwqd-38ty3lIApgxN_yEhibsumFGA8fAaPAfqTHMJ8MfMKm5EQ6Ul7r2CwPkDLu57YjS6Vqtpr6ZTm73N08LRLVtpfSR2UgfUxWJDLUNQjnEIRrZrEsk_Y-f9GgAIq-vGZuZGVFxTslaqidl241i7iohJRiKYxW4ncP4BkEH_daNTgZRsx9HfGkuniGWHj9kCn3Qt3j5vG-wMtE" />
             </div>
             <div className="absolute -top-10 -right-10 w-64 h-64 bg-tertiary-container rounded-full mix-blend-multiply filter blur-3xl opacity-30"></div>
             <div className="absolute -bottom-10 -left-10 w-80 h-80 bg-primary-container rounded-full mix-blend-multiply filter blur-3xl opacity-30"></div>
@@ -127,7 +120,7 @@ export default function LandingPage() {
 
       {/* Final CTA */}
       <section className="px-8 py-24">
-        <div className="max-w-screen-xl mx-auto primary-satin-gradient rounded-xl p-12 md:p-24 text-center text-on-primary relative overflow-hidden">
+        <div className="max-w-7xl mx-auto primary-satin-gradient rounded-xl p-12 md:p-24 text-center text-on-primary relative overflow-hidden">
           <div className="relative z-10 space-y-8">
             <h2 className="font-headline text-4xl md:text-6xl font-bold">Ready to start their health journey?</h2>
             <p className="text-xl opacity-90 max-w-2xl mx-auto">Join 50,000+ pet parents who prioritize wellness and organized care.</p>
@@ -142,5 +135,5 @@ export default function LandingPage() {
         </div>
       </section>
     </main>
-  );
+  )
 }

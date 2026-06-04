@@ -1,6 +1,24 @@
 import api from "../auth/apiClient";
 
 
+export async function getPetById(petId) {
+    try {
+        const res = await api.get(`/pet/${petId}`);
+        return res.data;
+    } catch (error) {
+        return null;
+    }
+}
+
+export async function getPetsByUserId(id) {
+    try {
+        const res = await api.get(`/pets/user/${id}`);
+        return res.data;
+    } catch {
+        window.alert("Error")
+    }
+}
+
 export async function addPet(Pet, userId) {
     try {
         const res = await api.post(`/pets/user/${userId}`, Pet);

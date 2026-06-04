@@ -10,17 +10,16 @@ import { useAuth } from "@/auth/AuthProvider";
 export default function NavBar() {
   const pathname = usePathname();
   const router = useRouter();
-  const data = useAuth();
-  const user = data.user;
+  const { loading, user } = useAuth();
 
   const handleOnClick = () => {
     if (!user) {
       router.push('/login');
-    } else if (user && pathname === `/user/${user.id}`) {
+    } else if (user && pathname === `/user/me`) {
       data.logOut();
       router.push('/');
     } else if (user) {
-      router.push(`/user/${user.id}`);
+      router.push(`/user/me`);
     }
   };
 
@@ -33,7 +32,7 @@ export default function NavBar() {
       );
     }
 
-    if (pathname?.startsWith(`/user/${user.id}`)) {
+    if (pathname?.startsWith(`/user/me`)) {
       return (
         <span className="material-symbols-outlined" aria-hidden="true">
           logout
@@ -42,12 +41,12 @@ export default function NavBar() {
     }
 
     return (
-      <img
+      (<img
         src={user.image_url}
         className="rounded-full w-6 h-6 border border-[#7b5749] object-cover"
         alt="User avatar"
-      />
-    );
+      />)
+    )
   };
 
   return (
@@ -92,13 +91,13 @@ export default function NavBar() {
             </span>
           </button>
 
-          <button
+          {loading ? null : <button
             aria-label="Account"
             className="text-[#7b5749] hover:opacity-80 transition-all cursor-pointer"
             onClick={handleOnClick}
           >
             {renderButtonContent()}
-          </button>
+          </button>}
         </div>
       </nav>
     </header>

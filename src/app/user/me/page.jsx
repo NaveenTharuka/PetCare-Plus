@@ -1,14 +1,24 @@
+"use client"
 import PetCard from '@/components/PetCard';
-import getUserById from '@/apiServices/user.api';
 import Link from 'next/link';
+import ErrorMsg from '@/components/ErrorMsg';
+import { useAuth } from '@/auth/AuthProvider';
+import { useEffect, useState } from 'react';
+import Loader from '@/components/Loader';
 
-export default async function UserProfile({ params }) {
-  const { id } = await params;
-  const user = await getUserById(id);
-  const pets = user?.pets;
+export default function UserProfile() {
+
+  const { user, loading } = useAuth();
+  const [pets, setPets] = useState([]);
+
+  useEffect(() => {
+    if (user) {
+      setPets(user.pets);
+    }
+  }, [user]);
 
   return (
-    user ? (
+    loading ? (<Loader />) : (user ? (
 
       <main className="pt-32 pb-24 px-6 md:px-12 max-w-7xl mx-auto min-h-screen">
         {/* Profile Header Section */}
@@ -78,7 +88,7 @@ export default async function UserProfile({ params }) {
           <div className="lg:w-2/3 space-y-8">
             <div className="flex justify-between items-center px-2">
               <h2 className="font-headline text-3xl font-bold text-on-surface">Your Furry Family</h2>
-              <Link href={`/user/${user.id}/pets/new`} className="flex items-center gap-2 text-primary font-bold hover:opacity-80 transition-all">
+              <Link href={`/user/me/pets/new`} className="flex items-center gap-2 text-primary font-bold hover:opacity-80 transition-all">
                 <span className="material-symbols-outlined" data-icon="add_circle">add_circle</span>
                 <span>Add New Pet</span>
               </Link>
@@ -86,7 +96,7 @@ export default async function UserProfile({ params }) {
 
             {pets.length > 0 ? (
               pets.map((pet) => (
-                <PetCard key={pet.id} {...pet} />
+                <PetCard key={pet.id} {...pet} userId={user?.id} />
               ))
             ) : (
               <p className="text-on-surface-variant">No pets found</p>
@@ -95,11 +105,7 @@ export default async function UserProfile({ params }) {
         </div>
       </main>
     ) : (
-      <main className="pt-32 pb-24 px-6 md:px-12 max-w-7xl mx-auto min-h-screen">
-        <div className="flex flex-col items-center justify-center h-full">
-          <h1 className="font-headline text-5xl md:text-xl font-extrabold text-on-surface tracking-tight">User Not Found</h1>
-        </div>
-      </main>
-    )
+      <ErrorMsg message="User not found" />
+    ))
   )
 }
