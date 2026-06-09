@@ -10,13 +10,13 @@ import { useAuth } from "@/auth/AuthProvider";
 export default function NavBar() {
   const pathname = usePathname();
   const router = useRouter();
-  const { loading, user } = useAuth();
+  const { loading, user, logOut } = useAuth();
 
   const handleOnClick = () => {
     if (!user) {
       router.push('/login');
     } else if (user && pathname === `/user/me`) {
-      data.logOut();
+      logOut();
       router.push('/');
     } else if (user) {
       router.push(`/user/me`);

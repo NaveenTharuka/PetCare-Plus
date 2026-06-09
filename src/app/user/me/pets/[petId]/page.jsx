@@ -75,7 +75,7 @@ export default async function PetProfilePage({ params }) {
                         </div>
 
                         <div className={styles.reportsList}>
-                            {reports ? (reports.map((report) => (
+                            {reports?.length > 0 ? (reports.map((report) => (
                                 <ReportCard report={report} key={report.id} />
                             ))) : <div className={styles.noReports}>No reports found</div>}
                         </div>
@@ -92,7 +92,7 @@ export default async function PetProfilePage({ params }) {
                         </div>
 
                         <div className={styles.vaxList}>
-                            {vaccines ? (vaccines.map((vax, idx) => (
+                            {vaccines?.length > 0 ? (vaccines.map((vax, idx) => (
                                 <VaccineCard vax={vax} key={idx} />
                             ))) : <div className={styles.noReports}>No vaccines found</div>}
                         </div>
