@@ -1,0 +1,111 @@
+.fabContainer {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 1rem;
+    z-index: 1000;
+}
+
+.fabOption {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    background-color: var(--color-surface-container-lowest);
+    color: var(--color-on-surface);
+    padding: 0.625rem 1.25rem;
+    border-radius: 40px;
+    border: 1px solid var(--color-outline-variant);
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    font-size: 0.875rem;
+    font-weight: 600;
+    animation: slideIn 0.2s ease-out;
+}
+
+.fabOption:hover {
+    transform: translateX(-8px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.fabReport:hover {
+    border-color: #d65f50;
+    color: #d65f50;
+}
+
+.fabVaccine:hover {
+    border-color: #1e8b49;
+    color: #1e8b49;
+}
+
+.fabOptionIcon {
+    font-size: 20px;
+}
+
+.fabOptionLabel {
+    white-space: nowrap;
+}
+
+.fabMain {
+    width: 60px;
+    height: 60px;
+    background-color: #7b5749;
+    color: #ffffff;
+    border-radius: 9999px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 8px 20px rgba(123, 87, 73, 0.3);
+    border: none;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.fabMain:hover {
+    transform: scale(1.05);
+    background-color: #6a4a3d;
+}
+
+.fabMainOpen {
+    background-color: #6a4a3d;
+}
+
+.fabMainIcon {
+    font-size: 32px;
+    transition: transform 0.2s ease;
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateX(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@media (max-width: 768px) {
+    .fabContainer {
+        bottom: 1rem;
+        right: 1rem;
+    }
+
+    .fabOption {
+        padding: 0.625rem;
+    }
+
+    .fabOptionLabel {
+        display: none;
+    }
+
+    .fabOptionIcon {
+        font-size: 20px;
+        margin: 0;
+    }
+}

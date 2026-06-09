@@ -1,15 +1,33 @@
-import React from 'react';
+"use client"
+import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
 import styles from './page.module.css';
 import ReportCard from '@/components/ReportCard';
 import VaccineCard from '@/components/VaccineCard';
+import ActionButton from '@/components/ActionButton';
 import { getPetById } from '@/apiServices/pet.api';
 import ErrorMsg from '@/components/ErrorMsg';
+import Loader from '@/components/Loader';
 
-export default async function PetProfilePage({ params }) {
+export default function PetProfilePage({ params }) {
+    const { petId } = React.use(params);
+    const [loading, setLoading] = useState(true);
+    const [pet, setPet] = useState(null);
 
-    const { petId } = await params;
-    const pet = await getPetById(petId);
+    useEffect(() => {
+        fetchPetData();
+    }, [petId]);
+
+    const fetchPetData = async () => {
+        try {
+            const pet = await getPetById(petId);
+            setPet(pet);
+        } catch (error) {
+            console.log(error);
+        } finally {
+            setLoading(false);
+        }
+    }
 
     const reports = pet?.reports;
     const vaccines = pet?.vaccinations;
@@ -17,7 +35,7 @@ export default async function PetProfilePage({ params }) {
     const age = new Date().getFullYear() - new Date(pet?.date_of_birth).getFullYear();
 
     return (
-        pet ? (<div className={styles.pageContainer}>
+        loading ? <Loader /> : pet ? (<div className={styles.pageContainer}>
             <div className={styles.contentWrapper}>
                 {/* Top Section */}
                 <div className={styles.topSection}>
@@ -202,9 +220,10 @@ export default async function PetProfilePage({ params }) {
             </div>
 
             {/* Floating Action Button */}
-            <button className={styles.fab}>
-                <span className={`material-symbols-outlined ${styles.fabIcon}`}>add</span>
-            </button>
+            <ActionButton
+                onAddReport={() => console.log('Add Report')}
+                onAddVaccine={() => console.log('Add Vaccination')}
+            />
         </div>) : (<ErrorMsg message="Pet not found"></ErrorMsg>)
     );
 }

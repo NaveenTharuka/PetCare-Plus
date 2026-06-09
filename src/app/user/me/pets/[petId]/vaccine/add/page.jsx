@@ -3,6 +3,7 @@
 import React, { useState } from 'react';
 import styles from './VaccineFormPage.module.css';
 import { useParams } from 'next/navigation';
+import { addVaccine } from '@/apiServices/vaccine.api';
 
 const VaccineFormPage = () => {
     const params = useParams();
@@ -32,19 +33,31 @@ const VaccineFormPage = () => {
         e.preventDefault();
         setIsSubmitting(true);
 
-        // Simulate API call
-        await new Promise(resolve => setTimeout(resolve, 1200));
+        const res = await addVaccine(formData);
 
         setIsSubmitting(false);
         setSubmitSuccess(true);
 
-        // Reset success message after 2 seconds
+
+        if (!res.status == 200) {
+            window.alert("Error adding vaccine : ", res.message)
+        } else {
+            window.alert("Vaccine added successfully")
+
+            setFormData({
+                pet_id: petId,
+                vaccineName: '',
+                vaccineDate: '',
+                dueDate: '',
+                vetName: '',
+                notes: ''
+            });
+        }
+
         setTimeout(() => {
             setSubmitSuccess(false);
         }, 2000);
 
-        // Here you would typically send the data to your backend
-        console.log('Form submitted:', formData);
     };
 
     const handleCancel = () => {
@@ -114,8 +127,8 @@ const VaccineFormPage = () => {
                                     </label>
                                     <input
                                         className={styles.input}
-                                        id="due_date"
-                                        name="due_date"
+                                        id="dueDate"
+                                        name="dueDate"
                                         type="date"
                                         value={formData.dueDate}
                                         onChange={handleChange}

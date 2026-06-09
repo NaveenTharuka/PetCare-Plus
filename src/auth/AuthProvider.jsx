@@ -37,24 +37,27 @@ export function AuthProvider({ children }) {
     useEffect(() => {
         initAuth();
 
-        const { data: listener } = supabase.auth.onAuthStateChange(
-            async (_event, session) => {
-                if (!session) {
-                    setUser(null);
-                    return;
-                }
+        const { data: listener } = supabase.auth.onAuthStateChange(async (_event, session) => {
+            setLoading(true);
 
-                try {
-                    const res = await getUserBySupabaseToken(
-                        session.access_token
-                    );
-                    setUser(res);
-                } catch (err) {
-                    console.log(err);
-                    setUser(null);
-                }
+            if (!session) {
+                setUser(null);
+                setLoading(false);
+                return;
             }
-        );
+
+            try {
+                const res = await getUserBySupabaseToken(
+                    session.access_token
+                );
+                setUser(res);
+            } catch (err) {
+                console.log(err);
+                setUser(null);
+            } finally {
+                setLoading(false);
+            }
+        });
 
         return () => {
             listener.subscription.unsubscribe();

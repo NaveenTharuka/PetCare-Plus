@@ -1,6 +1,11 @@
 import styles from "../app/user/me/pets/[petId]/page.module.css";
 
 export default function VaccineCard({ vax }) {
+
+    const isValid = vax.dueDate > new Date().toISOString().split('T')[0];
+    const badgeClass = isValid ? styles.vaxBadgeValid : styles.vaxBadgeExpired;
+    const badgeText = isValid ? "VALID" : "EXPIRED";
+
     return (
         <div className={styles.vaxItem}>
             <div className={styles.vaxHeader}>
@@ -8,8 +13,8 @@ export default function VaccineCard({ vax }) {
                     <p className={styles.vaxTitle}>{vax.vaccineName}</p>
                     <p className={styles.vaxClinic}>{vax.vetName}</p>
                 </div>
-                <div className={styles.vaxBadge}>
-                    VALID
+                <div className={badgeClass}>
+                    {badgeText}
                 </div>
             </div>
 
