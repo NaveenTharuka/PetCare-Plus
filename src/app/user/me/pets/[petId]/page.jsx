@@ -9,11 +9,15 @@ import { getPetById } from '@/apiServices/pet.api';
 import ErrorMsg from '@/components/ErrorMsg';
 import Loader from '@/components/Loader';
 import ProtectedRoutes from '@/auth/ProtectedRoutes';
+import { useRouter } from 'next/navigation';
 
 export default function PetProfilePage({ params }) {
     const { petId } = React.use(params);
     const [loading, setLoading] = useState(true);
     const [pet, setPet] = useState(null);
+
+
+    const router = useRouter();
 
     useEffect(() => {
         fetchPetData();
@@ -225,8 +229,8 @@ export default function PetProfilePage({ params }) {
 
                 {/* Floating Action Button */}
                 <ActionButton
-                    onAddReport={() => console.log('Add Report')}
-                    onAddVaccine={() => console.log('Add Vaccination')}
+                    onAddReport={() => router.push(`/user/me/pets/${pet.id}/report/add`)}
+                    onAddVaccine={() => router.push(`/user/me/pets/${pet.id}/vaccine/add`)}
                 />
             </div>) : (<ErrorMsg message="Pet not found"></ErrorMsg>)}
         </ProtectedRoutes>
