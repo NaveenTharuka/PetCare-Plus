@@ -357,6 +357,42 @@
   flex-shrink: 0;
 }
 
+/* Brown dot colors */
+.vetVisitDotBrown {
+  background-color: #8B4513;
+  /* SaddleBrown */
+}
+
+.vetVisitDotLightBrown {
+  background-color: #D2691E;
+  /* Chocolate */
+}
+
+.vetVisitDotDarkBrown {
+  background-color: #5C4033;
+  /* Dark Brown */
+}
+
+.vetVisitDotWarmBrown {
+  background-color: #CD853F;
+  /* Peru */
+}
+
+.vetVisitDotCinnamon {
+  background-color: #D2691E;
+  /* Cinnamon */
+}
+
+.vetVisitDotCoffee {
+  background-color: #6F4E37;
+  /* Coffee Brown */
+}
+
+.vetVisitDotDefault {
+  background-color: #A0522D;
+  /* Sienna - default brown */
+}
+
 .vetVisitDateType {
   font-size: 10px;
   font-weight: 700;

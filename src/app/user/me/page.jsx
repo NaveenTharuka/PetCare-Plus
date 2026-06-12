@@ -33,7 +33,9 @@ export default function UserProfile() {
                 />
               </div>
               <div className="absolute -bottom-4 -right-4 lg:right-4 bg-tertiary-container p-4 rounded-lg shadow-lg">
-                <span className="material-symbols-outlined text-on-tertiary-container text-3xl" data-icon="verified_user">verified_user</span>
+                <span className="material-symbols-outlined" style={{ fontSize: '20px', color: '#666' }}>
+                  edit
+                </span>
               </div>
             </div>
 

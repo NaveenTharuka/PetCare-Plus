@@ -3,9 +3,10 @@ import styles from './pet.module.css'
 import { addPet, addPetPicture } from '@/apiServices/pet.api';
 import ProtectedRoutes from '@/auth/ProtectedRoutes';
 import { useState, use } from 'react';
+import { useAuth } from '@/auth/AuthProvider';
 
-export default function AddPet({ params }) {
-    const { id } = use(params);
+export default function AddPet() {
+    const { user, loading } = useAuth();
     const [gender, setGender] = useState('male');
     const [isMicrochipped, setIsMicrochipped] = useState(false);
     const [image, setImage] = useState(null);
@@ -14,12 +15,14 @@ export default function AddPet({ params }) {
         e.preventDefault();
         const formData = new FormData(e.target);
         const data = Object.fromEntries(formData.entries());
-        const response = await addPet(data, id);
+        const response = await addPet(data, user.id);
 
-        if (image) {
-            await addPetPicture(response.id, image);
+        if (response) {
+            if (image) {
+                await addPetPicture(response.id, image);
+            }
+            window.location.href = `/user/me`;
         }
-        window.location.href = `/user/${id}`;
     }
 
     return (

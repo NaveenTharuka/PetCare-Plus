@@ -1,14 +1,17 @@
 "use client"
-import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
 import styles from './page.module.css';
+
 import ReportCard from '@/components/ReportCard';
 import VaccineCard from '@/components/VaccineCard';
+import VetVisitCard from '@/components/VetVisitCard';
 import ActionButton from '@/components/ActionButton';
-import { getPetById } from '@/apiServices/pet.api';
 import ErrorMsg from '@/components/ErrorMsg';
 import Loader from '@/components/Loader';
 import ProtectedRoutes from '@/auth/ProtectedRoutes';
+
+import React, { useEffect, useState } from 'react';
+import { getPetById } from '@/apiServices/pet.api';
 import { useRouter } from 'next/navigation';
 
 export default function PetProfilePage({ params }) {
@@ -36,6 +39,7 @@ export default function PetProfilePage({ params }) {
 
     const reports = pet?.reports;
     const vaccines = pet?.vaccinations;
+    const visits = pet?.vet_visits;
 
     const age = pet?.date_of_birth
         ? new Date().getFullYear() - new Date(pet.date_of_birth).getFullYear()
@@ -73,13 +77,21 @@ export default function PetProfilePage({ params }) {
 
                         <div className={styles.imageContainer}>
                             <div className={styles.imageWrapper}>
-                                <Image
-                                    src={pet.image_url}
-                                    alt={pet.name}
-                                    width={600}
-                                    height={450}
-                                    className={styles.image}
-                                />
+                                {pet?.image_url ? (
+                                    <Image
+                                        src={pet.image_url}
+                                        alt={pet.name}
+                                        width={600}
+                                        height={450}
+                                        className={styles.image}
+                                    />
+                                ) : (
+                                    <div className={styles.image} style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', backgroundColor: '#f0f0f0' }}>
+                                        <span className="material-symbols-outlined" style={{ fontSize: '100px', color: '#666' }}>
+                                            pets
+                                        </span>
+                                    </div>
+                                )}
                             </div>
                             <div className={styles.statusBadge}>
                                 <span className={`material-symbols-outlined ${styles.statusIcon}`}>favorite</span>
@@ -135,40 +147,9 @@ export default function PetProfilePage({ params }) {
                             </div>
 
                             <div className={styles.vetVisitsList}>
-                                {[
-                                    {
-                                        date: 'SEP 12, 2024',
-                                        type: 'Routine Check-up',
-                                        title: 'Paws & Claws Clinic',
-                                        notes: 'Heart and lungs clear. Recommended slightly more activity to maintain weight.',
-                                        dotColor: 'bg-[#7b5749]'
-                                    },
-                                    {
-                                        date: 'JUN 05, 2024',
-                                        type: 'Minor Injury',
-                                        title: 'Emergency Care East',
-                                        notes: 'Minor paw laceration treated. Cleaned and bandaged. Antibiotics course completed.',
-                                        dotColor: 'bg-outline-variant'
-                                    },
-                                    {
-                                        date: 'JAN 18, 2024',
-                                        type: 'Consultation',
-                                        title: 'Dr. Aris Private Practice',
-                                        notes: 'Discussion on specialized dietary needs for Golden Retrievers.',
-                                        dotColor: 'bg-outline-variant'
-                                    }
-                                ].map((visit, idx) => (
-                                    <div key={idx} className={styles.vetVisitItem}>
-                                        <div className={`${styles.vetVisitDot} ${visit.dotColor}`}></div>
-                                        <div>
-                                            <p className={styles.vetVisitDateType}>
-                                                {visit.date} <span className={styles.vetVisitSeparator}>•</span> {visit.type}
-                                            </p>
-                                            <p className={styles.vetVisitTitle}>{visit.title}</p>
-                                            <p className={styles.vetVisitNotes}>{visit.notes}</p>
-                                        </div>
-                                    </div>
-                                ))}
+                                {visits?.length > 0 ? (visits.map((visit, index) => (
+                                    <VetVisitCard visit={visit} key={visit.id} index={index} />
+                                ))) : <div className={styles.noReports}>No visits found</div>}
                             </div>
                         </div>
                     </div>
@@ -231,6 +212,7 @@ export default function PetProfilePage({ params }) {
                 <ActionButton
                     onAddReport={() => router.push(`/user/me/pets/${pet.id}/report/add`)}
                     onAddVaccine={() => router.push(`/user/me/pets/${pet.id}/vaccine/add`)}
+                    onAddVetVisit={() => router.push(`/user/me/pets/${pet.id}/visits`)}
                 />
             </div>) : (<ErrorMsg message="Pet not found"></ErrorMsg>)}
         </ProtectedRoutes>

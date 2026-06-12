@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import styles from './ActionButton.module.css';
 
-export default function ActionButton({ onAddReport, onAddVaccine }) {
+export default function ActionButton({ onAddReport, onAddVaccine, onAddVetVisit }) {
     const [isOpen, setIsOpen] = useState(false);
 
     return (
@@ -30,6 +30,17 @@ export default function ActionButton({ onAddReport, onAddVaccine }) {
                     >
                         <span className={`material-symbols-outlined ${styles.fabOptionIcon}`}>vaccines</span>
                         <span className={styles.fabOptionLabel}>Add Vaccine</span>
+                    </button>
+
+                    <button
+                        className={`${styles.fabOption} ${styles.fabReport}`}
+                        onClick={() => {
+                            setIsOpen(false);
+                            onAddVetVisit?.();
+                        }}
+                    >
+                        <span className={`material-symbols-outlined ${styles.fabOptionIcon}`}>snippet_folder</span>
+                        <span className={styles.fabOptionLabel}>Add Vet Visit</span>
                     </button>
                 </>
             )}

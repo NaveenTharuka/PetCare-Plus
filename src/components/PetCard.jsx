@@ -1,6 +1,8 @@
 "use client"
 import { deletePet } from "@/apiServices/pet.api";
 import { useRouter } from "next/navigation";
+import Image from "next/image";
+import styles from "../app/user/me/pets/[petId]/page.module.css";
 
 
 export default function Petcard({ userId, ...pet }) {
@@ -27,7 +29,21 @@ export default function Petcard({ userId, ...pet }) {
     return (
         <div className="bg-surface-container-lowest p-6 rounded-lg shadow-sm flex flex-col sm:flex-row gap-8 items-center border border-outline-variant/10 hover:shadow-md transition-shadow">
             <div className="w-48 h-48 rounded-xl overflow-hidden shrink-0 border-4 border-surface-container">
-                <img alt={pet.name} className="w-full h-full object-cover" src={pet.image_url} />
+                {pet?.image_url ? (
+                    <Image
+                        src={pet.image_url}
+                        alt={pet.name}
+                        width={600}
+                        height={450}
+                        className={styles.image}
+                    />
+                ) : (
+                    <div className={styles.image} style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', backgroundColor: '#f0f0f0' }}>
+                        <span className="material-symbols-outlined" style={{ fontSize: '100px', color: '#666' }}>
+                            pets
+                        </span>
+                    </div>
+                )}
             </div>
             <div className="flex-1 space-y-4">
                 <div className="flex justify-between items-start">

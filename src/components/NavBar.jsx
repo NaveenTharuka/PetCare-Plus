@@ -6,21 +6,53 @@ import { usePathname } from "next/navigation";
 import { useRouter } from "next/navigation";
 import Logo from "../../public/Logo.png";
 import { useAuth } from "@/auth/AuthProvider";
+import styles from "./NavBar.module.css";
+import { useState, useRef, useEffect } from "react";
 
 export default function NavBar() {
   const pathname = usePathname();
   const router = useRouter();
   const { loading, user, logOut } = useAuth();
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const dropdownRef = useRef(null);
 
-  const handleOnClick = () => {
+  // Close dropdown when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+        setIsDropdownOpen(false);
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, []);
+
+  const handleAvatarClick = () => {
     if (!user) {
       router.push('/login');
-    } else if (user && pathname === `/user/me`) {
+      return;
+    }
+
+    if (pathname === `/user/me`) {
       logOut();
       router.push('/');
-    } else if (user) {
-      router.push(`/user/me`);
+      return;
     }
+
+    // Toggle dropdown instead of returning JSX
+    setIsDropdownOpen(!isDropdownOpen);
+  };
+
+  const handleLogout = () => {
+    logOut();
+    router.push('/');
+    setIsDropdownOpen(false);
+  };
+
+  const handleAccount = () => {
+    router.push('/account');
+    setIsDropdownOpen(false);
   };
 
   const renderButtonContent = () => {
@@ -41,12 +73,12 @@ export default function NavBar() {
     }
 
     return (
-      (<img
+      <img
         src={user.image_url}
         className="rounded-full w-6 h-6 border border-[#7b5749] object-cover"
         alt="User avatar"
-      />)
-    )
+      />
+    );
   };
 
   return (
@@ -64,7 +96,7 @@ export default function NavBar() {
         {/* Desktop Navigation Links */}
         <div className="hidden md:flex items-center gap-10">
           {[
-            { name: 'Dashboard', path: '/user/1' },
+            { name: 'Dashboard', path: '/user/me' },
             { name: 'Pets', path: '/user/1/pets' },
             { name: 'Services', path: '/services' },
             { name: 'Store', path: '#' }
@@ -80,7 +112,7 @@ export default function NavBar() {
         </div>
 
         {/* User Actions */}
-        <div className="flex items-center gap-6">
+        <div className="flex items-center gap-6" ref={dropdownRef}>
           <button
             aria-label="Notifications"
             className="text-[#7b5749] hover:opacity-80 transition-all cursor-pointer"
@@ -91,13 +123,47 @@ export default function NavBar() {
             </span>
           </button>
 
-          {loading ? null : <button
-            aria-label="Account"
-            className="text-[#7b5749] hover:opacity-80 transition-all cursor-pointer"
-            onClick={handleOnClick}
-          >
-            {renderButtonContent()}
-          </button>}
+          <div className="relative">
+            {loading ? (
+              <button
+                aria-label="Account"
+                className="text-[#7b5749] hover:opacity-80 transition-all cursor-pointer"
+                disabled={loading}
+              >
+                <span className="material-symbols-outlined" aria-hidden="true">account_circle</span>
+              </button>
+            ) : (
+              <button
+                aria-label="Account"
+                className="text-[#7b5749] hover:opacity-80 transition-all cursor-pointer"
+                onClick={handleAvatarClick}
+              >
+                {renderButtonContent()}
+              </button>
+            )}
+
+            {/* Dropdown Menu */}
+            {isDropdownOpen && user && !pathname?.startsWith('/user/me') && (
+              <ul className={styles.dropdown}>
+                <li>
+                  <button onClick={handleAccount} className={styles.dropdownItem}>
+                    <span className="material-symbols-outlined" aria-hidden="true">
+                      account_circle
+                    </span>
+                    Account
+                  </button>
+                </li>
+                <li>
+                  <button onClick={handleLogout} className={styles.dropdownItem}>
+                    <span className="material-symbols-outlined" aria-hidden="true">
+                      logout
+                    </span>
+                    Log Out
+                  </button>
+                </li>
+              </ul>
+            )}
+          </div>
         </div>
       </nav>
     </header>
