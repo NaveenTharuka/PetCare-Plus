@@ -16,6 +16,19 @@ export default function VaccineCard({ vax }) {
                 <div className={badgeClass}>
                     {badgeText}
                 </div>
+                <div className="flex gap-2">
+                    <button className="rounded-[12px] text-xs font-bold hover:scale-110 hover:text-primary transition-all">
+                        <span className="material-symbols-outlined">
+                            edit
+                        </span>
+                    </button>
+
+                    <button className="rounded-[12px] text-xs font-bold hover:scale-110 hover:text-red-500 transition-all">
+                        <span className="material-symbols-outlined">
+                            delete
+                        </span>
+                    </button>
+                </div>
             </div>
 
             <div className={styles.vaxDatesGrid}>

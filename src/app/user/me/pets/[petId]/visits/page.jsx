@@ -21,7 +21,6 @@ export default function VetVisitPage() {
             try {
                 const res = await getPetById(petId)
                 setPet(res)
-                console.log(res)
             } catch {
                 setPet(null)
             } finally {
@@ -55,9 +54,9 @@ export default function VetVisitPage() {
 
         try {
             const res = await addVetVisit(formData)
-            if (res.ok) {
+            if (res.status == 200 || 201) {
                 toast.success(`Vet record for ${pet?.name || 'your pet'} has been saved to the Health Vault.`);
-                router.push('/health-vault');
+                router.push(`/user/me/pets/${petId}`);
             } else {
                 toast.error('Failed to save vet record.');
                 setIsSubmitting(false);
@@ -87,7 +86,8 @@ export default function VetVisitPage() {
                                         {pet?.image_url && (
                                             <Image
                                                 alt={pet?.name || 'Pet'}
-                                                src={pet.image_url}
+                                                src={`${pet.image_url}?t=${Date.now()}`}
+                                                loading="eager"
                                                 width={80}
                                                 height={80}
                                                 className="object-cover"

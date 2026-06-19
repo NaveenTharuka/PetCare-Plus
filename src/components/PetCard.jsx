@@ -6,7 +6,13 @@ import styles from "../app/user/me/pets/[petId]/page.module.css";
 
 
 export default function Petcard({ userId, ...pet }) {
+
     const router = useRouter();
+
+    const handleEdit = () => {
+        router.push(`/user/me/pets/${pet.id}/edit`);
+    }
+
     async function handleDeletePet(pet) {
         await deletePet(pet);
         router.refresh();
@@ -31,7 +37,7 @@ export default function Petcard({ userId, ...pet }) {
             <div className="w-48 h-48 rounded-xl overflow-hidden shrink-0 border-4 border-surface-container">
                 {pet?.image_url ? (
                     <Image
-                        src={pet.image_url}
+                        src={`${pet.image_url}?t=${Date.now()}`}
                         alt={pet.name}
                         width={600}
                         height={450}
@@ -52,7 +58,7 @@ export default function Petcard({ userId, ...pet }) {
                         <p className="text-on-surface-variant">{pet.breed} • {age} {typeof age === 'number' ? 'years old' : ''}</p>
                     </div>
                     <div className="flex">
-                        <button onClick={() => handleDeletePet(pet)} className="bg-surface-container-high text-on-surface-variant px-4 py-2 rounded-full text-sm font-bold hover:bg-surface-container-highest transition-all">
+                        <button onClick={() => handleDeletePet(pet)} className="bg-surface-container-high text-on-surface-variant px-4 py-2 rounded-[12px] text-sm font-bold hover:bg-surface-container-highest transition-all">
                             <span className="material-symbols-outlined">
                                 delete
                             </span>
@@ -72,7 +78,7 @@ export default function Petcard({ userId, ...pet }) {
                 </div>
                 <div className="flex gap-4">
                     <button className="bg-secondary-container text-on-secondary-container px-6 py-2 rounded-full text-sm font-bold hover:opacity-80 transition-all" onClick={handleHealth}>Health Log</button>
-                    <button className="bg-surface-container-high text-on-surface-variant px-6 py-2 rounded-full text-sm font-bold hover:bg-surface-container-highest transition-all">Edit Profile</button>
+                    <button className="bg-surface-container-high text-on-surface-variant px-6 py-2 rounded-full text-sm font-bold hover:bg-surface-container-highest transition-all" onClick={handleEdit}>Edit Profile</button>
                 </div>
             </div>
         </div>
