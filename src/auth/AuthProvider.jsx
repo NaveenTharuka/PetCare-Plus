@@ -42,6 +42,12 @@ export function AuthProvider({ children }) {
         setUser(null);
     }, []);
 
+    const refreshUser = useCallback(async () => {
+        const { data, error } = await supabase.auth.getSession();
+        if (error || !data?.session) return;
+        await fetchUser(data.session.access_token);
+    }, [fetchUser]);
+
     useEffect(() => {
         initAuth();
 
@@ -70,8 +76,9 @@ export function AuthProvider({ children }) {
         user,
         logOut,
         loading,
+        refreshUser,
         isAuthenticated: !!user
-    }), [user, logOut, loading]);
+    }), [user, logOut, loading, refreshUser]);
 
     return (
         <AuthContext.Provider value={value}>
