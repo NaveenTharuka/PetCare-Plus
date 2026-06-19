@@ -1,3 +1,4 @@
+import PetProfileEdit from "@/app/user/me/pets/[petId]/edit/page";
 import api from "../auth/apiClient";
 
 
@@ -55,6 +56,17 @@ export async function deletePet(pet) {
         return res.data;
     } catch (error) {
         console.error("Error in deletePet:", error.response ? error.response.data : error.message);
+        throw error;
+    }
+}
+
+export async function editPet(pet, petId) {
+    try {
+        const res = await api.put(`/pets/edit/${petId}`, pet)
+        console.log(res)
+        return res.data;
+    } catch (error) {
+        console.error("Error in editPet:", error.response ? error.response.data : error.message);
         throw error;
     }
 }

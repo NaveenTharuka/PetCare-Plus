@@ -79,7 +79,7 @@ export default function PetProfilePage({ params }) {
                             <div className={styles.imageWrapper}>
                                 {pet?.image_url ? (
                                     <Image
-                                        src={pet.image_url}
+                                        src={`${pet.image_url}?t=${Date.now()}`}
                                         alt={pet.name}
                                         width={600}
                                         height={450}
@@ -148,7 +148,7 @@ export default function PetProfilePage({ params }) {
 
                             <div className={styles.vetVisitsList}>
                                 {visits?.length > 0 ? (visits.map((visit, index) => (
-                                    <VetVisitCard visit={visit} key={visit.id} index={index} />
+                                    <VetVisitCard visit={visit} key={visit.id} index={index} onEdit={router.push(`/user/me/pets/${pet.id}/visits/${visit.id}/edit`)} />
                                 ))) : <div className={styles.noReports}>No visits found</div>}
                             </div>
                         </div>

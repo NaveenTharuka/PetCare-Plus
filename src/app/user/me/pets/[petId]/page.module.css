@@ -195,7 +195,7 @@
 
 .reportItem:hover {
   cursor: pointer;
-  transform: scale(1.1);
+  transform: scale(1.02);
 }
 
 .reportIconWrapper {
@@ -265,7 +265,7 @@
 
 .vaxItem:hover {
   cursor: pointer;
-  transform: scale(1.1);
+  transform: scale(1.02);
 }
 
 .vaxHeader {
@@ -391,6 +391,161 @@
 .vetVisitDotDefault {
   background-color: #A0522D;
   /* Sienna - default brown */
+}
+
+/* Vet Visit Item Layout */
+.vetVisitItem {
+  padding: 1rem 0;
+  border-bottom: 1px solid rgba(177, 178, 176, 0.2);
+  transition: background-color 0.2s;
+}
+
+.vetVisitItem:hover {
+  background-color: rgba(245, 243, 241, 0.5);
+}
+
+.vetVisitContent {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1rem;
+}
+
+.vetVisitLeft {
+  display: flex;
+  gap: 1rem;
+  flex: 1;
+  min-width: 0;
+  /* Prevents overflow */
+}
+
+/* Dot Colors */
+.vetVisitDot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  margin-top: 0.25rem;
+}
+
+.vetVisitDotBrown {
+  background-color: #8B6B4A;
+}
+
+.vetVisitDotLightBrown {
+  background-color: #C4A882;
+}
+
+.vetVisitDotDarkBrown {
+  background-color: #5C4033;
+}
+
+.vetVisitDotWarmBrown {
+  background-color: #A67B5B;
+}
+
+.vetVisitDotCinnamon {
+  background-color: #D4A373;
+}
+
+.vetVisitDotCoffee {
+  background-color: #6F4E37;
+}
+
+/* Text Styles */
+.vetVisitDateType {
+  font-size: 0.875rem;
+  color: #5e5f5d;
+  margin-bottom: 0.25rem;
+}
+
+.vetVisitSeparator {
+  margin: 0 0.5rem;
+  color: #b1b2b0;
+}
+
+.vetVisitTitle {
+  font-weight: 600;
+  color: #313331;
+  margin-bottom: 0.25rem;
+}
+
+.vetVisitNotes {
+  font-size: 0.875rem;
+  color: #5e5f5d;
+  line-height: 1.4;
+}
+
+/* Action Buttons */
+.vetVisitActions {
+  display: flex;
+  gap: 0.5rem;
+  flex-shrink: 0;
+  align-items: center;
+}
+
+.vetVisitEditBtn,
+.vetVisitDeleteBtn {
+  width: 36px;
+  height: 36px;
+  border: none;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s;
+  background: transparent;
+  color: #5e5f5d;
+}
+
+.vetVisitEditBtn:hover {
+  background-color: #f5f3f1;
+  color: #7b5749;
+  transform: scale(1.05);
+}
+
+.vetVisitEditBtn:active {
+  transform: scale(0.95);
+}
+
+.vetVisitDeleteBtn:hover {
+  background-color: #fef2f2;
+  color: #a83836;
+  transform: scale(1.05);
+}
+
+.vetVisitDeleteBtn:active {
+  transform: scale(0.95);
+}
+
+.vetVisitDeleteBtn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.vetVisitDeleteBtn:disabled:hover {
+  background-color: transparent;
+  color: #5e5f5d;
+}
+
+/* Material Icons in buttons */
+.vetVisitEditBtn .material-symbols-outlined,
+.vetVisitDeleteBtn .material-symbols-outlined {
+  font-size: 20px;
+}
+
+/* Responsive */
+@media (max-width: 640px) {
+  .vetVisitContent {
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .vetVisitActions {
+    align-self: flex-end;
+  }
 }
 
 .vetVisitDateType {

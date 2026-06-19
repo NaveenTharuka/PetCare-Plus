@@ -6,11 +6,13 @@ import { useAuth } from '@/auth/AuthProvider';
 import { useEffect, useState } from 'react';
 import Loader from '@/components/Loader';
 import ProtectedRoutes from '@/auth/ProtectedRoutes';
+import { useRouter } from 'next/navigation';
 
 export default function UserProfile() {
 
   const { user, loading } = useAuth();
   const [pets, setPets] = useState([]);
+  const router = useRouter();
 
   useEffect(() => {
     if (user) {
@@ -32,10 +34,22 @@ export default function UserProfile() {
                   src={user.image_url || "https://picsum.photos/500/500"}
                 />
               </div>
-              <div className="absolute -bottom-4 -right-4 lg:right-4 bg-tertiary-container p-4 rounded-lg shadow-lg">
-                <span className="material-symbols-outlined" style={{ fontSize: '20px', color: '#666' }}>
-                  edit
-                </span>
+
+              {/* Edit button - matches the rotated/rounded aesthetic */}
+              <div className="absolute -bottom-4 -right-4 lg:right-4 z-10">
+                <button
+                  onClick={() => router.push(`/user/me/edit`)}
+                  className="bg-primary-container p-3 rounded-xl shadow-lg hover:shadow-xl transition-all duration-200 hover:scale-105 active:scale-95 focus:outline-none focus:ring-2 focus:ring-primary-container focus:ring-offset-2 rotate-2"
+                  aria-label="Edit profile"
+                  title="Edit profile"
+                >
+                  <span
+                    className="material-symbols-outlined block -rotate-2"
+                    style={{ fontSize: '20px' }}
+                  >
+                    edit
+                  </span>
+                </button>
               </div>
             </div>
 
