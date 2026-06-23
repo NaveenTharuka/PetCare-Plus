@@ -14,6 +14,7 @@ import React, { useEffect, useState } from 'react';
 import { getPetById } from '@/apiServices/pet.api';
 import { useRouter } from 'next/navigation';
 import { deleteVisit } from '@/apiServices/visits.api';
+import { deleteVaccine } from '@/apiServices/vaccine.api';
 
 export default function PetProfilePage({ params }) {
     const { petId } = React.use(params);
@@ -38,9 +39,20 @@ export default function PetProfilePage({ params }) {
         }
     }
 
-    const handleDelete = async (id) => {
+    const handleVisitDelete = async (id) => {
         try {
             const res = await deleteVisit(id)
+            if (res) {
+                await fetchPetData();
+            }
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
+    const handleVaccineDelete = async (id) => {
+        try {
+            const res = await deleteVaccine(id);
             if (res) {
                 await fetchPetData();
             }
@@ -143,7 +155,12 @@ export default function PetProfilePage({ params }) {
 
                             <div className={styles.vaxList}>
                                 {vaccines?.length > 0 ? (vaccines.map((vax, idx) => (
-                                    <VaccineCard vax={vax} key={idx} />
+                                    <VaccineCard
+                                        vax={vax}
+                                        key={idx}
+                                        onDelete={() => handleVaccineDelete(vax.id)}
+                                        onEdit={() => router.push(`/user/me/pets/${pet.id}/vaccine/${vax.id}/edit`)}
+                                    />
                                 ))) : <div className={styles.noReports}>No vaccines found</div>}
                             </div>
                         </div>
@@ -165,7 +182,7 @@ export default function PetProfilePage({ params }) {
                                         key={visit.id}
                                         index={index}
                                         onEdit={() => router.push(`/user/me/pets/${pet.id}/visits/${visit.id}/edit`)}
-                                        onDelete={() => handleDelete(visit.id)} />
+                                        onDelete={() => handleVisitDelete(visit.id)} />
                                 ))) : <div className={styles.noReports}>No visits found</div>}
                             </div>
                         </div>

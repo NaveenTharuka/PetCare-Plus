@@ -1,10 +1,30 @@
 import styles from "../app/user/me/pets/[petId]/page.module.css";
 
-export default function VaccineCard({ vax }) {
+export default function VaccineCard({ vax, onEdit, onDelete }) {
 
     const isValid = vax.dueDate > new Date().toISOString().split('T')[0];
     const badgeClass = isValid ? styles.vaxBadgeValid : styles.vaxBadgeExpired;
     const badgeText = isValid ? "VALID" : "EXPIRED";
+
+    const handleEdit = () => {
+        if (onEdit) {
+            onEdit(vax);
+        }
+    };
+
+    const handleDelete = async () => {
+        if (!onDelete) return;
+
+        // Confirm before deleting
+        if (window.confirm(`Are you sure you want to delete the vaccine for "${vax.vaccineName}"?`)) {
+            try {
+                await onDelete(vax.id);
+            } catch (error) {
+                console.error('Failed to delete vaccine:', error);
+                alert('Failed to delete visit. Please try again.');
+            }
+        }
+    };
 
     return (
         <div className={styles.vaxItem}>
@@ -17,13 +37,13 @@ export default function VaccineCard({ vax }) {
                     {badgeText}
                 </div>
                 <div className="flex gap-2">
-                    <button className="rounded-[12px] text-xs font-bold hover:scale-110 hover:text-primary transition-all">
+                    <button onClick={handleEdit} className="rounded-[12px] text-xs font-bold hover:scale-110 hover:text-primary transition-all">
                         <span className="material-symbols-outlined">
                             edit
                         </span>
                     </button>
 
-                    <button className="rounded-[12px] text-xs font-bold hover:scale-110 hover:text-red-500 transition-all">
+                    <button onClick={handleDelete} className="rounded-[12px] text-xs font-bold hover:scale-110 hover:text-red-500 transition-all">
                         <span className="material-symbols-outlined">
                             delete
                         </span>

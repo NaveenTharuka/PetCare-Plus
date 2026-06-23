@@ -25,10 +25,13 @@ export default function RootLayout({ children }) {
       </head>
       <body className="bg-background text-on-surface font-body selection:bg-primary-container selection:text-on-primary-container">
         <AuthProvider>
-          <NavBar />
-          {children}
-          {/* Footer was here */}
-          <Footer />
+          <div className="flex flex-col min-h-screen">
+            <NavBar />
+            <div className="flex-1 flex flex-col">
+              {children}
+            </div>
+            <Footer />
+          </div>
         </AuthProvider>
       </body>
     </html>
