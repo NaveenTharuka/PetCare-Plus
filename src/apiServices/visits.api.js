@@ -20,3 +20,22 @@ export async function addVetVisit(data) {
         throw error;
     }
 }
+
+export async function updateVetVisit(pet_id, formdata) {
+    try {
+        const res = api.put(`/visit/update/${pet_id}`, formdata)
+        return res
+    } catch (err) {
+        console.log("Error updating visit")
+        return err
+    }
+}
+
+export async function deleteVisit(visitId) {
+    try {
+        const res = await api.delete(`/visit/${visitId}/delete`)
+        return res.data
+    } catch (err) {
+        alert(`Error deleting vet visit : ${err}`)
+    }
+}

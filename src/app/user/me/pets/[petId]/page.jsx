@@ -13,6 +13,7 @@ import ProtectedRoutes from '@/auth/ProtectedRoutes';
 import React, { useEffect, useState } from 'react';
 import { getPetById } from '@/apiServices/pet.api';
 import { useRouter } from 'next/navigation';
+import { deleteVisit } from '@/apiServices/visits.api';
 
 export default function PetProfilePage({ params }) {
     const { petId } = React.use(params);
@@ -34,6 +35,17 @@ export default function PetProfilePage({ params }) {
             console.log(error);
         } finally {
             setLoading(false);
+        }
+    }
+
+    const handleDelete = async (id) => {
+        try {
+            const res = await deleteVisit(id)
+            if (res) {
+                await fetchPetData();
+            }
+        } catch (error) {
+            console.log(error);
         }
     }
 
@@ -148,7 +160,12 @@ export default function PetProfilePage({ params }) {
 
                             <div className={styles.vetVisitsList}>
                                 {visits?.length > 0 ? (visits.map((visit, index) => (
-                                    <VetVisitCard visit={visit} key={visit.id} index={index} onEdit={router.push(`/user/me/pets/${pet.id}/visits/${visit.id}/edit`)} />
+                                    <VetVisitCard
+                                        visit={visit}
+                                        key={visit.id}
+                                        index={index}
+                                        onEdit={() => router.push(`/user/me/pets/${pet.id}/visits/${visit.id}/edit`)}
+                                        onDelete={() => handleDelete(visit.id)} />
                                 ))) : <div className={styles.noReports}>No visits found</div>}
                             </div>
                         </div>
