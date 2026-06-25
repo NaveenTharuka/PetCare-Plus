@@ -1,0 +1,25 @@
+/* Add this to your Wellness.module.css */
+
+.imageWrapper {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 66.666667%;
+    height: 50%;
+    object-fit: cover;
+    border-top-left-radius: 120px;
+    transform: translateY(1rem) translateX(1rem);
+    filter: grayscale(100%);
+    transition: all 0.7s ease;
+}
+
+.imageWrapper:hover {
+    filter: grayscale(0%);
+}
+
+/* Hide on mobile */
+@media screen and (max-width: 768px) {
+    .imageWrapper {
+        display: none;
+    }
+}

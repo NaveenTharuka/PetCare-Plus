@@ -3,6 +3,7 @@
 import Loader from './Loader';
 import { useAuth } from '@/auth/AuthProvider';
 import { useRouter } from 'next/navigation';
+import styles from './landing.module.css'
 
 export default function LandingPage() {
 
@@ -58,8 +59,11 @@ export default function LandingPage() {
                   Keep vaccinations, surgical history, and lab results in one encrypted digital vault. Never lose a vet report again.
                 </p>
               </div>
-              <img className="absolute bottom-0 right-0 w-2/3 h-1/2 object-cover rounded-tl-xl translate-y-4 translate-x-4 grayscale group-hover:grayscale-0 transition-all duration-700" alt="close up of a professional veterinarian holding a digital tablet displaying health charts next to a calm brown dog" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCKeixM04FJzzRv1QDwJ8H1nUkfPripmiVzo9Brdp6idXZzMzFkSG3ij7gfvVuYv54ZgciCLlQbcc_63TPpV6rrOGFrzfidxvLGdc4cBUXjJYU1z1blJ-VF0yowuUDzbIiPWvvpV5LDlYUHRxSF8Y2BqEffD_IKMgYmhLaNy9nN8JwTArqj0GuzLzgvFfjN2GvAsjSEpLaZBlvH6ms0C_GU7j1_2xtpO2_HbZOeLHrlA2m9oCEyQn9QkDciqyLhMm2ANRBZHICMmvU" />
-            </div>
+              <img
+                className={styles.imageWrapper}
+                alt="close up of a professional veterinarian holding a digital tablet displaying health charts next to a calm brown dog"
+                src="https://lh3.googleusercontent.com/aida-public/AB6AXuCKeixM04FJzzRv1QDwJ8H1nUkfPripmiVzo9Brdp6idXZzMzFkSG3ij7gfvVuYv54ZgciCLlQbcc_63TPpV6rrOGFrzfidxvLGdc4cBUXjJYU1z1blJ-VF0yowuUDzbIiPWvvpV5LDlYUHRxSF8Y2BqEffD_IKMgYmhLaNy9nN8JwTArqj0GuzLzgvFfjN2GvAsjSEpLaZBlvH6ms0C_GU7j1_2xtpO2_HbZOeLHrlA2m9oCEyQn9QkDciqyLhMm2ANRBZHICMmvU"
+              />            </div>
             {/* Feature: Smart Reminders */}
             <div className="md:col-span-2 bg-tertiary-container p-10 rounded-xl flex flex-col justify-center">
               <div className="flex items-start gap-8">
