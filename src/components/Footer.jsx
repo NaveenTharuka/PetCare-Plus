@@ -22,7 +22,7 @@ export default function Footer() {
 
       {/* BottomNavBar (Mobile Only) */}
       <nav className="fixed bottom-0 left-0 w-full flex justify-around items-center px-6 pb-6 pt-3 md:hidden bg-[#fbf9f7]/90 backdrop-blur-xl z-50 rounded-t-[3rem] shadow-[0px_-10px_40px_rgba(49,51,49,0.04)]">
-        <a className="flex flex-col items-center justify-center bg-[#7b5749] text-white rounded-full w-12 h-12 mb-1 transition-all active:scale-90 duration-200" href="#">
+        <a className="flex flex-col items-center justify-center bg-[#7b5749] text-white rounded-full w-12 h-12 mb-1 transition-all active:scale-90 duration-200" href="/">
           <span className="material-symbols-outlined" data-icon="home">home</span>
         </a>
         <a className="flex flex-col items-center justify-center text-[#5e5f5d] dark:text-stone-400 w-12 h-12 mb-1 hover:bg-[#efeeeb] dark:hover:bg-stone-800 rounded-full transition-all" href="#">
