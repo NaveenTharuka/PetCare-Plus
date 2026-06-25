@@ -8,8 +8,8 @@ export default function login() {
                 <div className="flex justify-center mt-0 mb-0">
                     <div className={styles.fullForm}>
                         <div className={styles.signForm}>
-                            <h1 className="font-bold text-4xl m-5 text-start">Welcome Back</h1>
-                            <p className="text-gray-600 m-5 text-start">Login to your account</p>
+                            <h1 className="font-bold text-3xl md:text-4xl mx-2 mt-4 mb-2 text-start">Welcome Back</h1>
+                            <p className="text-gray-600 mx-2 mb-6 text-start">Login to your account</p>
                             <form className="flex flex-col gap-5">
 
                                 <div className={styles.sections}>

@@ -7,8 +7,10 @@
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
-    height: 110vh;
-    width: 100vw;
+    min-height: 100vh;
+    height: auto;
+    width: 100%;
+    padding: 100px 16px 40px 16px;
 
     display: flex;
     justify-content: center;
@@ -24,11 +26,12 @@
     justify-content: center;
     border-radius: 45px;
     box-shadow: 10px 10px 15px 0 rgba(0, 0, 0, 0.1);
-    margin-top: 100px;
+    margin-top: 20px;
     margin-left: 50px;
     margin-right: 50px;
-    margin-bottom: 50px;
+    margin-bottom: 20px;
     max-width: 1000px;
+    overflow: hidden;
 }
 
 .signForm {
@@ -97,11 +100,21 @@
 @media (max-width: 768px) {
     .fullForm {
         flex-direction: column;
+        margin-left: 0;
+        margin-right: 0;
+        margin-top: 0;
+        margin-bottom: 0;
+        width: 100%;
+        max-width: 450px;
+        border-radius: 30px;
     }
 
     .signForm {
         width: 100%;
+        min-width: 0;
         max-width: 100%;
+        padding: 30px 20px;
+        border-radius: 30px;
     }
 
     .signUpButton {

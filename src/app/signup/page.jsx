@@ -6,7 +6,7 @@ import LoginWithGoogleButton from "@/components/LoginWithGoogleButton";
 export default function signup() {
     return (
         <>
-            <div className="flex justify-center mt-15 mb-15">
+            <div className="flex justify-center w-full">
                 <div className={styles.fullForm}>
                     <div className={styles.fullFormLeft}>
                         <h1 className="text-3xl font-bold text-white">Why Choose PetCare+?</h1>
@@ -15,8 +15,8 @@ export default function signup() {
                     </div>
 
                     <div className={styles.signForm}>
-                        <h1 className="font-bold text-4xl m-5 text-start">Join with PetCare+</h1>
-                        <p className="text-gray-600 m-5 text-start">Begin your pet&apos;s journey with PetCare+</p>
+                        <h1 className="font-bold text-3xl md:text-4xl mx-2 mt-4 mb-2 text-start">Join with PetCare+</h1>
+                        <p className="text-gray-600 mx-2 mb-6 text-start">Begin your pet&apos;s journey with PetCare+</p>
                         <form className="flex flex-col gap-2">
                             <div className={styles.sections}>
                                 <label className="pl-2 font-bold">Name</label>
