@@ -2,7 +2,7 @@ import { supabase } from "@/apiServices/supabase";
 import axios from "axios";
 
 const api = axios.create({
-    baseURL: "/api",
+    baseURL: process.env.NEXT_PUBLIC_BACKEND_URL,
 });
 
 // api.interceptors.request.use(async (config) => {
