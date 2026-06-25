@@ -97,8 +97,8 @@ export default function NavBar() {
         <div className="hidden md:flex items-center gap-10">
           {[
             { name: 'Dashboard', path: '/user/me' },
-            { name: 'Pets', path: '/user/1/pets' },
-            { name: 'Services', path: '/services' },
+            { name: 'Pets', path: '/#' },
+            { name: 'Services', path: '/#' },
             { name: 'Store', path: '#' }
           ].map((item) => (
             <Link
