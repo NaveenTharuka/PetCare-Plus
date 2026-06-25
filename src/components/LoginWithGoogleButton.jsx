@@ -12,7 +12,7 @@ export default function LoginWithGoogleButton() {
             const { data, error } = await supabase.auth.signInWithOAuth({
                 provider: 'google',
                 options: {
-                    redirectTo: 'http://localhost:3000',
+                    redirectTo: process.env.NEXT_PUBLIC_FRONTEND_URL,
                     queryParams: {
                         prompt: 'select_account'
                     }
