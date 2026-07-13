@@ -2,6 +2,8 @@ import "./globals.css";
 import NavBar from "../components/NavBar";
 import Footer from "../components/Footer";
 import { AuthProvider } from '@/auth/AuthProvider';
+import NotificationSideBar from "@/components/NotificationSideBar";
+import { NotificationProvider } from "@/components/NotificationContext";
 
 export const metadata = {
   title: "Get Started | PetCare+",
@@ -25,13 +27,17 @@ export default function RootLayout({ children }) {
       </head>
       <body className="bg-background text-on-surface font-body selection:bg-primary-container selection:text-on-primary-container">
         <AuthProvider>
-          <div className="flex flex-col min-h-screen">
-            <NavBar />
-            <div className="flex-1 flex flex-col">
-              {children}
+          <NotificationProvider>
+            <NotificationSideBar />
+
+            <div className="flex flex-col min-h-screen">
+              <NavBar />
+              <div className="flex-1 flex flex-col">
+                {children}
+              </div>
+              <Footer />
             </div>
-            <Footer />
-          </div>
+          </NotificationProvider>
         </AuthProvider>
       </body>
     </html>

@@ -9,7 +9,10 @@ import { useAuth } from "@/auth/AuthProvider";
 import styles from "./NavBar.module.css";
 import { useState, useRef, useEffect } from "react";
 
+import { useNotification } from "@/components/NotificationContext";
+
 export default function NavBar() {
+  const { openSidebar } = useNotification();
   const pathname = usePathname();
   const router = useRouter();
   const { loading, user, logOut } = useAuth();
@@ -116,7 +119,7 @@ export default function NavBar() {
           <button
             aria-label="Notifications"
             className="text-[#7b5749] hover:opacity-80 transition-all cursor-pointer"
-            onClick={() => router.push('/notifications')}
+            onClick={openSidebar}
           >
             <span className="material-symbols-outlined" aria-hidden="true">
               notifications
