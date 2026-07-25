@@ -9,10 +9,10 @@ import { useAuth } from "@/auth/AuthProvider";
 import styles from "./NavBar.module.css";
 import { useState, useRef, useEffect } from "react";
 
-import { useNotification } from "@/components/NotificationContext";
+import { useNotifications } from "@/context/NotificationContext";
 
 export default function NavBar() {
-  const { openSidebar } = useNotification();
+  const { openSidebar } = useNotifications();
   const pathname = usePathname();
   const router = useRouter();
   const { loading, user, logOut } = useAuth();

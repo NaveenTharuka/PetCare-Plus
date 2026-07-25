@@ -2,8 +2,8 @@ import "./globals.css";
 import NavBar from "../components/NavBar";
 import Footer from "../components/Footer";
 import { AuthProvider } from '@/auth/AuthProvider';
-import NotificationSideBar from "@/components/NotificationSideBar";
-import { NotificationProvider } from "@/components/NotificationContext";
+import NotificationSideBar from '../components/NotificationSideBar'
+import { NotificationProvider } from "@/context/NotificationContext";
 
 export const metadata = {
   title: "Get Started | PetCare+",
