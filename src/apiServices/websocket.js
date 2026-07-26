@@ -5,7 +5,7 @@ class NotificationSocket {
         if (this.socket) return;
 
         this.socket = new WebSocket(
-            `http://localhost:8000/ws/notifications/${userId}`
+            `${process.env.NEXT_PUBLIC_WS_URL}/ws/notifications/${userId}`
         );
 
         this.socket.onopen = () => {
