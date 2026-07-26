@@ -504,3 +504,368 @@
         transform: translateY(0);
     }
 }
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(22px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeInLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-18px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes fadeInRight {
+    from {
+        opacity: 0;
+        transform: translateX(18px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes popIn {
+    0% {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+
+    60% {
+        opacity: 1;
+        transform: scale(1.03);
+    }
+
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes shake {
+
+    10%,
+    90% {
+        transform: translateX(-1px);
+    }
+
+    20%,
+    80% {
+        transform: translateX(2px);
+    }
+
+    30%,
+    50%,
+    70% {
+        transform: translateX(-4px);
+    }
+
+    40%,
+    60% {
+        transform: translateX(4px);
+    }
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes pulseBorder {
+
+    0%,
+    100% {
+        box-shadow: 0 0 0 0 rgba(123, 87, 73, 0.25);
+    }
+
+    50% {
+        box-shadow: 0 0 0 10px rgba(123, 87, 73, 0);
+    }
+}
+
+@keyframes checkPop {
+    0% {
+        opacity: 0;
+        transform: scale(0.6) rotate(-10deg);
+    }
+
+    60% {
+        opacity: 1;
+        transform: scale(1.15) rotate(4deg);
+    }
+
+    100% {
+        opacity: 1;
+        transform: scale(1) rotate(0deg);
+    }
+}
+
+/* Hero */
+.title {
+    opacity: 0;
+    animation: fadeInUp 0.55s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+.subtitle {
+    opacity: 0;
+    animation: fadeInUp 0.5s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    animation-delay: 0.1s;
+}
+
+/* Left column */
+.dropZone {
+    opacity: 0;
+    animation: fadeInLeft 0.55s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    animation-delay: 0.15s;
+    transition: transform 0.25s ease, border-color 0.25s ease, background-color 0.25s ease;
+}
+
+.dropZone:hover {
+    transform: translateY(-2px);
+}
+
+.dropZone.dragOver {
+    animation: pulseBorder 1.2s ease-in-out infinite;
+    transform: scale(1.01);
+}
+
+.dropZoneIcon {
+    transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.dropZone:hover .dropZoneIcon {
+    transform: translateY(-4px) scale(1.08);
+}
+
+.dropZone.dragOver .dropZoneIcon {
+    transform: scale(1.15);
+}
+
+.browseButton {
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.browseButton:hover {
+    transform: translateY(-1px);
+}
+
+.browseButton:active {
+    transform: scale(0.97);
+}
+
+.filesBadge {
+    opacity: 0;
+    animation: popIn 0.4s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+.filesBadge .material-symbols-outlined {
+    animation: checkPop 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.clearButton {
+    transition: transform 0.15s ease, opacity 0.2s ease;
+}
+
+.clearButton:hover {
+    opacity: 0.75;
+}
+
+.clearButton:active {
+    transform: scale(0.94);
+}
+
+.guidelinesCard {
+    opacity: 0;
+    animation: fadeInLeft 0.55s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    animation-delay: 0.28s;
+}
+
+.guidelineItem {
+    opacity: 0;
+    animation: fadeInUp 0.4s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    transition: transform 0.2s ease;
+}
+
+.guidelinesGrid .guidelineItem:nth-child(1) {
+    animation-delay: 0.4s;
+}
+
+.guidelinesGrid .guidelineItem:nth-child(2) {
+    animation-delay: 0.46s;
+}
+
+.guidelinesGrid .guidelineItem:nth-child(3) {
+    animation-delay: 0.52s;
+}
+
+.guidelineItem:hover {
+    transform: translateY(-2px);
+}
+
+.guidelineIcon {
+    transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.guidelineItem:hover .guidelineIcon {
+    transform: rotate(-8deg) scale(1.1);
+}
+
+/* Right column */
+.formCard {
+    opacity: 0;
+    animation: fadeInRight 0.55s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    animation-delay: 0.2s;
+}
+
+.formGroup {
+    opacity: 0;
+    animation: fadeInUp 0.45s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+.form .formGroup:nth-of-type(1) {
+    animation-delay: 0.32s;
+}
+
+.form .formGroup:nth-of-type(2) {
+    animation-delay: 0.38s;
+}
+
+.form .formGroup:nth-of-type(3) {
+    animation-delay: 0.44s;
+}
+
+.input,
+.select {
+    transition: box-shadow 0.2s ease, transform 0.15s ease;
+}
+
+.input:focus,
+.select:focus {
+    transform: translateY(-1px);
+}
+
+.submitButton {
+    opacity: 0;
+    animation: fadeInUp 0.45s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    animation-delay: 0.5s;
+    transition: transform 0.2s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.2s ease;
+}
+
+.submitButton:hover:not(:disabled) {
+    transform: translateY(-2px);
+}
+
+.submitButton:active:not(:disabled) {
+    transform: translateY(0) scale(0.97);
+}
+
+.spinIcon {
+    display: inline-flex;
+    animation: spin 0.9s linear infinite;
+}
+
+.formMessage {
+    animation: fadeInUp 0.3s ease forwards;
+}
+
+.errorMessage {
+    animation: shake 0.4s ease;
+}
+
+.successMessage {
+    animation: popIn 0.4s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+.securityNote {
+    opacity: 0;
+    animation: fadeInUp 0.4s ease forwards;
+    animation-delay: 0.6s;
+}
+
+.securityNote .material-symbols-outlined {
+    transition: transform 0.3s ease;
+}
+
+.securityNote:hover .material-symbols-outlined {
+    transform: scale(1.15);
+}
+
+.imageCard {
+    opacity: 0;
+    animation: fadeInRight 0.6s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    animation-delay: 0.35s;
+    overflow: hidden;
+}
+
+.serenImage {
+    transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.imageCard:hover .serenImage {
+    transform: scale(1.06);
+}
+
+.imageOverlay {
+    transition: opacity 0.3s ease;
+}
+
+.imageCaption {
+    transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.imageCard:hover .imageCaption {
+    transform: translateY(-2px);
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+    .title,
+    .subtitle,
+    .dropZone,
+    .dropZone.dragOver,
+    .dropZoneIcon,
+    .browseButton,
+    .filesBadge,
+    .filesBadge .material-symbols-outlined,
+    .clearButton,
+    .guidelinesCard,
+    .guidelineItem,
+    .guidelineIcon,
+    .formCard,
+    .formGroup,
+    .input,
+    .select,
+    .submitButton,
+    .spinIcon,
+    .formMessage,
+    .errorMessage,
+    .successMessage,
+    .securityNote,
+    .securityNote .material-symbols-outlined,
+    .imageCard,
+    .serenImage,
+    .imageOverlay,
+    .imageCaption {
+        animation: none !important;
+        transition: none !important;
+        transform: none !important;
+        opacity: 1 !important;
+    }
+}

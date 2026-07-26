@@ -254,7 +254,7 @@ export default function VaccinesPage() {
                                         />
                                     </div>
                                     <button type="submit" className={styles.submitButton} disabled={isUploading}>
-                                        <span className="material-symbols-outlined">
+                                        <span className={`material-symbols-outlined ${isUploading ? styles.spinIcon : ''}`}>
                                             {isUploading ? 'hourglass_empty' : 'save'}
                                         </span>
                                         {isUploading ? 'Uploading...' : 'Save to Health Records'}
