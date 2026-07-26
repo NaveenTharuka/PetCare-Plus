@@ -117,14 +117,13 @@ export function NotificationProvider({ children }) {
             (notification) => {
                 addNotification(notification);
             }
-
         );
 
         return () => {
             notificationSocket.disconnect();
         };
 
-    }, [user]);
+    }, [user?.id]);
 
     const unreadCount =
         notifications.filter(

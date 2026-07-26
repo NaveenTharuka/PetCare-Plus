@@ -2,31 +2,44 @@ class NotificationSocket {
     socket = null;
 
     connect(userId, onMessage) {
-        if (this.socket) return;
+
+        if (
+            this.socket &&
+            (
+                this.socket.readyState === WebSocket.OPEN ||
+                this.socket.readyState === WebSocket.CONNECTING
+            )
+        ) {
+            console.log("Socket already connected");
+            return;
+        }
+
 
         this.socket = new WebSocket(
             `${process.env.NEXT_PUBLIC_WS_URL}/ws/notifications/${userId}`
         );
 
+
         this.socket.onopen = () => {
             console.log("Notification Socket connected");
         };
 
-        this.socket.onmessage = (event) => {
-            const notification = JSON.parse(event.data)
 
+        this.socket.onmessage = (event) => {
+            const notification = JSON.parse(event.data);
             onMessage(notification);
         };
 
-        this.socket.oneerror = (err) => {
-            console.error(err)
-        }
 
-        this.socket.onClose = () => {
-            console.log("Socket disconnected")
+        this.socket.onerror = (err) => {
+            console.error("Notification socket error", err);
+        };
+
+
+        this.socket.onclose = () => {
+            console.log("Socket disconnected");
             this.socket = null;
-        }
-
+        };
     }
 
     disconnect() {
