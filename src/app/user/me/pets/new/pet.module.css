@@ -435,3 +435,318 @@ input:checked+.slider:before {
         flex-direction: column;
     }
 }
+
+/* ---------- Entrance animations ---------- */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(24px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes popIn {
+    0% {
+        opacity: 0;
+        transform: scale(0.85);
+    }
+
+    60% {
+        opacity: 1;
+        transform: scale(1.03);
+    }
+
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes shake {
+
+    10%,
+    90% {
+        transform: translateX(-1px);
+    }
+
+    20%,
+    80% {
+        transform: translateX(2px);
+    }
+
+    30%,
+    50%,
+    70% {
+        transform: translateX(-4px);
+    }
+
+    40%,
+    60% {
+        transform: translateX(4px);
+    }
+}
+
+.animateIn {
+    opacity: 0;
+    animation: fadeInUp 0.6s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+.animateIn:nth-of-type(1) {
+    animation-delay: 0.02s;
+}
+
+.animateIn:nth-of-type(2) {
+    animation-delay: 0.12s;
+}
+
+.animateIn:nth-of-type(3) {
+    animation-delay: 0.22s;
+}
+
+/* apply directly where needed */
+.headerAnim {
+    opacity: 0;
+    animation: fadeInUp 0.55s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+.formCardAnim {
+    opacity: 0;
+    animation: fadeInUp 0.6s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    animation-delay: 0.1s;
+}
+
+.infoAnim {
+    opacity: 0;
+    animation: fadeInUp 0.6s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    animation-delay: 0.2s;
+}
+
+/* ---------- Photo upload ---------- */
+.photoBox {
+    transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1),
+        box-shadow 0.3s ease,
+        border-color 0.3s ease;
+}
+
+.photoBox:hover {
+    transform: translateY(-2px) scale(1.02);
+    box-shadow: 0 12px 28px rgba(123, 87, 73, 0.18);
+}
+
+.photoBox img {
+    animation: popIn 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.editIcon {
+    transition: transform 0.25s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.photoBox:hover .editIcon {
+    transform: scale(1.15) rotate(-8deg);
+}
+
+/* ---------- Inputs ---------- */
+.input {
+    transition: border-color 0.25s ease,
+        box-shadow 0.25s ease,
+        transform 0.15s ease;
+}
+
+.input:focus {
+    outline: none;
+    border-color: var(--color-primary, #7b5749);
+    box-shadow: 0 0 0 4px rgba(123, 87, 73, 0.12);
+    transform: translateY(-1px);
+}
+
+/* ---------- Gender toggle (sliding pill) ---------- */
+/* Gender Toggle Buttons — sliding pill, overrides earlier rules */
+.genderToggle {
+    position: relative;
+    display: flex;
+    gap: 0;
+    height: 50px;
+    background-color: #e2e3e0;
+    border-radius: 20px;
+    padding: 4px;
+    box-sizing: border-box;
+    overflow: hidden;
+}
+
+.genderButton {
+    flex: 1;
+    position: relative;
+    z-index: 1;
+    border-radius: 16px;
+    border: none;
+    background-color: transparent;
+    color: var(--color-on-surface-variant);
+    font-size: 15px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: color 0.35s ease;
+}
+
+.genderActive {
+    color: white;
+    font-weight: 600;
+    background-color: transparent;
+}
+
+.genderToggle::before {
+    content: '';
+    position: absolute;
+    top: 4px;
+    bottom: 4px;
+    left: 4px;
+    width: calc(50% - 4px);
+    background: #7b5749;
+    border-radius: 16px;
+    transition: transform 0.35s cubic-bezier(0.65, 0, 0.35, 1);
+    z-index: 0;
+}
+
+.genderToggle:has(.genderActive:nth-child(2))::before {
+    transform: translateX(100%);
+}
+
+/* ---------- Switch toggle ---------- */
+.switch input {
+    transition: background-color 0.3s ease;
+}
+
+.slider {
+    transition: background-color 0.35s ease;
+}
+
+.slider::before {
+    transition: transform 0.35s cubic-bezier(0.65, 0, 0.35, 1);
+}
+
+.toggleRow {
+    transition: transform 0.15s ease;
+}
+
+.toggleRow:active {
+    transform: scale(0.99);
+}
+
+/* ---------- Buttons ---------- */
+.submitButton {
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.2s cubic-bezier(0.22, 1, 0.36, 1),
+        box-shadow 0.2s ease,
+        opacity 0.2s ease;
+}
+
+.submitButton:hover:not(:disabled) {
+    transform: translateY(-2px);
+    box-shadow: 0 14px 30px rgba(123, 87, 73, 0.25);
+}
+
+.submitButton:active:not(:disabled) {
+    transform: translateY(0) scale(0.98);
+}
+
+.submitButton:disabled {
+    opacity: 0.75;
+    cursor: not-allowed;
+}
+
+.cancelButton {
+    transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+.cancelButton:hover {
+    transform: translateY(-1px);
+}
+
+.cancelButton:active {
+    transform: scale(0.97);
+}
+
+.galleryButton {
+    transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.galleryButton:hover {
+    transform: translateX(2px);
+    opacity: 0.85;
+}
+
+/* ---------- Spinner for loading state ---------- */
+.spinner {
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    margin-right: 8px;
+    border: 2px solid rgba(255, 255, 255, 0.4);
+    border-top-color: white;
+    border-radius: 50%;
+    animation: spin 0.7s linear infinite;
+    vertical-align: middle;
+}
+
+/* ---------- Info cards ---------- */
+.infoCardsContainer {
+    display: flex;
+    gap: 24px;
+}
+
+.infoCardPink,
+.infoCardGray {
+    transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1),
+        box-shadow 0.3s ease;
+}
+
+.infoCardPink:hover,
+.infoCardGray:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 16px 32px rgba(0, 0, 0, 0.08);
+}
+
+.infoIconContainerPink,
+.infoIconContainerGray {
+    transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.infoCardPink:hover .infoIconContainerPink,
+.infoCardGray:hover .infoIconContainerGray {
+    transform: scale(1.1) rotate(-6deg);
+}
+
+/* ---------- Reduced motion ---------- */
+@media (prefers-reduced-motion: reduce) {
+
+    .headerAnim,
+    .formCardAnim,
+    .infoAnim,
+    .photoBox img,
+    .photoBox,
+    .editIcon,
+    .input,
+    .genderToggle::before,
+    .slider::before,
+    .submitButton,
+    .cancelButton,
+    .galleryButton,
+    .infoCardPink,
+    .infoCardGray,
+    .infoIconContainerPink,
+    .infoIconContainerGray {
+        animation: none !important;
+        transition: none !important;
+        transform: none !important;
+    }
+}

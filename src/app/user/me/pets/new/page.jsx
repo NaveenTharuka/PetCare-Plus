@@ -2,7 +2,7 @@
 import styles from './pet.module.css'
 import { addPet, addPetPicture } from '@/apiServices/pet.api';
 import ProtectedRoutes from '@/auth/ProtectedRoutes';
-import { useState, use } from 'react';
+import { useState } from 'react';
 import { useAuth } from '@/auth/AuthProvider';
 
 export default function AddPet() {
@@ -11,7 +11,11 @@ export default function AddPet() {
     const [isMicrochipped, setIsMicrochipped] = useState(false);
     const [image, setImage] = useState(null);
 
+    const [isFormSubmitting, setIsFormSubmitting] = useState(false)
+    const [isImageUploading, setIsImageUploading] = useState(false)
+
     const handleSubmit = async (e) => {
+        setIsFormSubmitting(true)
         e.preventDefault();
         const formData = new FormData(e.target);
         const data = Object.fromEntries(formData.entries());
@@ -19,28 +23,31 @@ export default function AddPet() {
 
         if (response) {
             if (image) {
+                setIsImageUploading(true)
                 await addPetPicture(response.id, image);
+                setIsImageUploading(false)
             }
             window.location.href = `/user/me`;
         }
+        setIsFormSubmitting(false)
     }
 
     return (
         <ProtectedRoutes>
             <div className={styles.main}>
-                <div className={styles.header}>
+                <div className={`${styles.header} ${styles.headerAnim}`}>
                     <h1 className={styles.headerTitle}>Welcome a New Friend</h1>
                     <p className={styles.headerSub}>Let&apos;s create a profile for your companion to ensure they get the best personalized care possible.</p>
                 </div>
 
-                <div className={styles.formCard}>
+                <div className={`${styles.formCard} ${styles.formCardAnim}`}>
                     <div className={styles.decorativeCorner}></div>
                     <form onSubmit={handleSubmit} className={styles.formElement}>
 
                         <div className={styles.photoSection}>
                             <div className={styles.photoUploadContainer}>
-                                <div className={styles.photoBox} >
-                                    {image && <img src={URL.createObjectURL(image)} alt="Preview" style={{ width: '100%', height: '100%', objectFit: 'fill', borderRadius: '25%' }} />}
+                                <div className={styles.photoBox}>
+                                    {image && <img key={image.name + image.lastModified} src={URL.createObjectURL(image)} alt="Preview" style={{ width: '100%', height: '100%', objectFit: 'fill', borderRadius: '25%' }} />}
                                     {!image && <span className="material-symbols-outlined" style={{ fontSize: '40px', color: '#7a7b79' }}>add_a_photo</span>}
                                     <div className={styles.editIcon}>
                                         <span className="material-symbols-outlined" style={{ fontSize: '16px', color: 'white' }}>
@@ -138,8 +145,9 @@ export default function AddPet() {
                         </div>
 
                         <div className={styles.buttonRow}>
-                            <button type="submit" className={styles.submitButton}>
-                                Create Pet Profile
+                            <button type="submit" className={styles.submitButton} disabled={isFormSubmitting || isImageUploading}>
+                                {isFormSubmitting && <span className={styles.spinner}></span>}
+                                {isFormSubmitting ? (isImageUploading ? "Uploading Image..." : "Creating Pet Profile...") : "Create Pet Profile"}
                             </button>
                             <button type="button" className={styles.cancelButton}>
                                 Cancel
@@ -148,7 +156,7 @@ export default function AddPet() {
                     </form>
                 </div>
 
-                <div className={styles.infoCardsContainer}>
+                <div className={`${styles.infoCardsContainer} ${styles.infoAnim}`}>
                     <div className={styles.infoCardPink}>
                         <div className={styles.infoIconContainerPink}>
                             <span className="material-symbols-outlined" style={{ color: 'white', fontSize: '32px' }}>
