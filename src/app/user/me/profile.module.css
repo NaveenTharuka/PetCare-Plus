@@ -1,0 +1,201 @@
+.userDashboard {
+    margin: 50px;
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
+    gap: 100px;
+    font-size: 20px;
+    max-width: 1280px;
+    min-width: 900px;
+}
+
+.userPhoto {
+    border-radius: 40px;
+    box-shadow: 10px 10px 15px 0 rgba(0, 0, 0, 0.3);
+    width: 400px;
+    height: 400px;
+    rotate: -3deg;
+}
+
+.address {
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
+    padding: 10px;
+    border-radius: 10px;
+    width: 400px;
+    height: 90px;
+    justify-content: center;
+    align-items: start;
+    background-color: rgb(241, 234, 216);
+    font-weight: 600;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(24px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes avatarIn {
+    from {
+        opacity: 0;
+        transform: translateY(16px) rotate(2deg) scale(0.94);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) rotate(2deg) scale(1);
+    }
+}
+
+@keyframes badgeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px) scale(0.96);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+@keyframes countUp {
+    from {
+        opacity: 0;
+        transform: translateY(6px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.avatarWrap {
+    opacity: 0;
+    animation: avatarIn 0.7s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+.editButton {
+    opacity: 0;
+    animation: fadeInUp 0.5s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    animation-delay: 0.35s;
+}
+
+.nameHeading {
+    opacity: 0;
+    animation: fadeInUp 0.6s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    animation-delay: 0.1s;
+}
+
+.badge {
+    opacity: 0;
+    animation: badgeIn 0.5s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.badge:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06);
+}
+
+.badge:nth-child(1) {
+    animation-delay: 0.2s;
+}
+
+.badge:nth-child(2) {
+    animation-delay: 0.28s;
+}
+
+.badge:nth-child(3) {
+    animation-delay: 0.36s;
+}
+
+.badge:nth-child(4) {
+    animation-delay: 0.44s;
+}
+
+.sidebar {
+    opacity: 0;
+    animation: fadeInUp 0.6s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    animation-delay: 0.3s;
+    transition: box-shadow 0.3s ease;
+}
+
+.statNumber {
+    display: inline-block;
+    animation: countUp 0.4s ease-out;
+}
+
+.statIcon {
+    transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.sidebar:hover .statIcon {
+    transform: scale(1.1) rotate(-6deg);
+}
+
+.sectionHeader {
+    opacity: 0;
+    animation: fadeInUp 0.6s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    animation-delay: 0.25s;
+}
+
+.addPetLink {
+    transition: transform 0.2s ease, opacity 0.2s ease, gap 0.2s ease;
+}
+
+.addPetLink:hover {
+    transform: translateX(2px);
+}
+
+.addPetLink .material-symbols-outlined {
+    transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.addPetLink:hover .material-symbols-outlined {
+    transform: rotate(90deg);
+}
+
+.petCardWrap {
+    opacity: 0;
+    animation: fadeInUp 0.55s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+.emptyState {
+    opacity: 0;
+    animation: fadeInUp 0.5s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    animation-delay: 0.35s;
+}
+
+.editButton:active {
+    transform: scale(0.95);
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+    .avatarWrap,
+    .editButton,
+    .nameHeading,
+    .badge,
+    .sidebar,
+    .statNumber,
+    .statIcon,
+    .sectionHeader,
+    .addPetLink,
+    .petCardWrap,
+    .emptyState {
+        animation: none !important;
+        transition: none !important;
+        transform: none !important;
+        opacity: 1 !important;
+    }
+}

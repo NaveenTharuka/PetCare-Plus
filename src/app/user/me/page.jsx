@@ -7,6 +7,7 @@ import { useEffect, useState } from 'react';
 import Loader from '@/components/Loader';
 import ProtectedRoutes from '@/auth/ProtectedRoutes';
 import { useRouter } from 'next/navigation';
+import styles from './profile.module.css';
 
 export default function UserProfile() {
 
@@ -27,7 +28,7 @@ export default function UserProfile() {
           {/* Profile Header Section */}
           <section className="mb-16 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
             <div className="lg:col-span-4 relative">
-              <div className="aspect-square rounded-xl overflow-hidden bg-surface-container-high shadow-xl rotate-2 max-w-[320px] mx-auto lg:mx-0">
+              <div className={`${styles.avatarWrap} aspect-square rounded-xl overflow-hidden bg-surface-container-high shadow-xl rotate-2 max-w-[320px] mx-auto lg:mx-0`}>
                 <img
                   alt={`portrait of ${user.name}`}
                   className="w-full h-full object-cover -rotate-2 scale-110"
@@ -39,7 +40,7 @@ export default function UserProfile() {
               <div className="absolute -bottom-4 -right-4 lg:right-4 z-10">
                 <button
                   onClick={() => router.push(`/user/me/edit`)}
-                  className="bg-primary-container p-3 rounded-xl shadow-lg hover:shadow-xl transition-all duration-200 hover:scale-105 active:scale-95 focus:outline-none focus:ring-2 focus:ring-primary-container focus:ring-offset-2 rotate-2"
+                  className={`${styles.editButton} bg-primary-container p-3 rounded-xl shadow-lg hover:shadow-xl transition-all duration-200 hover:scale-105 active:scale-95 focus:outline-none focus:ring-2 focus:ring-primary-container focus:ring-offset-2 rotate-2`}
                   aria-label="Edit profile"
                   title="Edit profile"
                 >
@@ -56,23 +57,23 @@ export default function UserProfile() {
             <div className="lg:col-span-8 flex flex-col justify-center h-full">
               <div>
                 <div className="flex items-center gap-4 mb-2">
-                  <h1 className="font-headline text-5xl md:text-6xl font-extrabold text-on-surface tracking-tight">{user.name}</h1>
+                  <h1 className={`${styles.nameHeading} font-headline text-5xl md:text-6xl font-extrabold text-on-surface tracking-tight`}>{user.name}</h1>
                 </div>
 
                 <div className="flex flex-wrap gap-4 mt-6">
-                  <div className="bg-surface-container-lowest px-6 py-3 rounded-full flex items-center gap-3 border border-outline-variant/20 shadow-sm">
+                  <div className={`${styles.badge} bg-surface-container-lowest px-6 py-3 rounded-full flex items-center gap-3 border border-outline-variant/20 shadow-sm`}>
                     <span className="material-symbols-outlined text-primary" data-icon="mail">mail</span>
                     <span className="font-medium text-on-surface-variant">{user.email}</span>
                   </div>
-                  <div className="bg-surface-container-lowest px-6 py-3 rounded-full flex items-center gap-3 border border-outline-variant/20 shadow-sm">
+                  <div className={`${styles.badge} bg-surface-container-lowest px-6 py-3 rounded-full flex items-center gap-3 border border-outline-variant/20 shadow-sm`}>
                     <span className="material-symbols-outlined text-primary" data-icon="call">call</span>
                     <span className="font-medium text-on-surface-variant">{user.phone}</span>
                   </div>
-                  <div className="bg-surface-container-lowest px-6 py-3 rounded-full flex items-center gap-3 border border-outline-variant/20 shadow-sm">
+                  <div className={`${styles.badge} bg-surface-container-lowest px-6 py-3 rounded-full flex items-center gap-3 border border-outline-variant/20 shadow-sm`}>
                     <span className="material-symbols-outlined text-primary" data-icon="home_pin">home_pin</span>
                     <span className="font-medium text-on-surface-variant">{user.address}</span>
                   </div>
-                  <div className="bg-surface-container-lowest px-6 py-3 rounded-full flex items-center gap-3 border border-outline-variant/20 shadow-sm">
+                  <div className={`${styles.badge} bg-surface-container-lowest px-6 py-3 rounded-full flex items-center gap-3 border border-outline-variant/20 shadow-sm`}>
                     <span className="material-symbols-outlined text-primary" data-icon="calendar_today">calendar_today</span>
                     <span className="font-medium text-on-surface-variant">Joined June 2021</span>
                   </div>
@@ -85,17 +86,17 @@ export default function UserProfile() {
           <div className="flex flex-col lg:flex-row gap-12">
             {/* Sidebar: Quick Insights */}
             <aside className="lg:w-1/3">
-              <div className="bg-surface-container-low p-8 rounded-lg border border-outline-variant/10 sticky top-32">
+              <div className={`${styles.sidebar} bg-surface-container-low p-8 rounded-lg border border-outline-variant/10 sticky top-32`}>
                 <h3 className="font-headline text-xl font-bold mb-6 text-on-surface">Quick Insights</h3>
                 <div className="space-y-6">
                   <div className="flex items-center justify-between">
                     <div className="flex items-center gap-3">
-                      <div className="w-10 h-10 rounded-full bg-primary-container flex items-center justify-center">
+                      <div className={`${styles.statIcon} w-10 h-10 rounded-full bg-primary-container flex items-center justify-center`}>
                         <span className="material-symbols-outlined text-on-primary-container" data-icon="pets">pets</span>
                       </div>
                       <span className="font-medium text-on-surface-variant">Total Pets</span>
                     </div>
-                    <span className="text-2xl font-bold text-primary">{pets.length}</span>
+                    <span key={pets.length} className={`${styles.statNumber} text-2xl font-bold text-primary`}>{pets.length}</span>
                   </div>
                 </div>
               </div>
@@ -103,20 +104,26 @@ export default function UserProfile() {
 
             {/* Main Panel: Pet List */}
             <div className="lg:w-2/3 space-y-8">
-              <div className="flex justify-between items-center px-2">
+              <div className={`${styles.sectionHeader} flex justify-between items-center px-2`}>
                 <h2 className="font-headline text-3xl font-bold text-on-surface">Your Furry Family</h2>
-                <Link href={`/user/me/pets/new`} className="flex items-center gap-2 text-primary font-bold hover:opacity-80 transition-all">
+                <Link href={`/user/me/pets/new`} className={`${styles.addPetLink} flex items-center gap-2 text-primary font-bold hover:opacity-80`}>
                   <span className="material-symbols-outlined" data-icon="add_circle">add_circle</span>
                   <span>Add New Pet</span>
                 </Link>
               </div>
 
               {pets.length > 0 ? (
-                pets.map((pet) => (
-                  <PetCard key={pet.id} {...pet} userId={user?.id} />
+                pets.map((pet, i) => (
+                  <div
+                    key={pet.id}
+                    className={styles.petCardWrap}
+                    style={{ animationDelay: `${0.15 + i * 0.08}s` }}
+                  >
+                    <PetCard {...pet} userId={user?.id} />
+                  </div>
                 ))
               ) : (
-                <p className="text-on-surface-variant">No pets found</p>
+                <p className={`${styles.emptyState} text-on-surface-variant`}>No pets found</p>
               )}
             </div>
           </div>
