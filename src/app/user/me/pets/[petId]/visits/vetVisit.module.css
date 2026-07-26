@@ -1,0 +1,222 @@
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeInLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-16px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes shake {
+
+    10%,
+    90% {
+        transform: translateX(-1px);
+    }
+
+    20%,
+    80% {
+        transform: translateX(2px);
+    }
+
+    30%,
+    50%,
+    70% {
+        transform: translateX(-4px);
+    }
+
+    40%,
+    60% {
+        transform: translateX(4px);
+    }
+}
+
+.petCard {
+    opacity: 0;
+    animation: fadeInLeft 0.55s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+.petCard .material-symbols-outlined {
+    transition: transform 0.4s ease;
+}
+
+.petCard:hover .material-symbols-outlined {
+    transform: rotate(8deg) scale(1.05);
+}
+
+.tipCard {
+    opacity: 0;
+    animation: fadeInLeft 0.55s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    animation-delay: 0.15s;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.tipCard:hover {
+    transform: translateY(-2px);
+}
+
+.tipIcon {
+    display: inline-block;
+    animation: pulseGlow 2.4s ease-in-out infinite;
+    animation-delay: 1s;
+}
+
+@keyframes pulseGlow {
+
+    0%,
+    100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.15);
+    }
+}
+
+.learnMore {
+    transition: gap 0.2s ease, transform 0.2s ease;
+}
+
+.learnMore:hover span:last-child {
+    transform: translateX(3px);
+}
+
+.learnMore span:last-child {
+    transition: transform 0.2s ease;
+    display: inline-block;
+}
+
+.formCard {
+    opacity: 0;
+    animation: fadeInUp 0.6s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    animation-delay: 0.1s;
+}
+
+.formHeading {
+    opacity: 0;
+    animation: fadeInUp 0.5s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    animation-delay: 0.2s;
+}
+
+.formField {
+    opacity: 0;
+    animation: fadeInUp 0.5s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+.formField:nth-of-type(1) {
+    animation-delay: 0.28s;
+}
+
+.formField:nth-of-type(2) {
+    animation-delay: 0.34s;
+}
+
+.formField:nth-of-type(3) {
+    animation-delay: 0.4s;
+}
+
+.formField:nth-of-type(4) {
+    animation-delay: 0.46s;
+}
+
+.fieldInput {
+    transition: transform 0.15s ease, box-shadow 0.2s ease;
+}
+
+.fieldInput:focus {
+    transform: translateY(-1px);
+}
+
+.calendarIcon {
+    transition: transform 0.2s ease;
+}
+
+.fieldInput:focus~.calendarIcon {
+    transform: translateY(-50%) scale(1.1);
+}
+
+.formActions {
+    opacity: 0;
+    animation: fadeInUp 0.5s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    animation-delay: 0.55s;
+}
+
+.cancelBtn {
+    transition: transform 0.15s ease;
+}
+
+.cancelBtn:active {
+    transform: scale(0.96);
+}
+
+.saveBtn {
+    transition: transform 0.2s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.2s ease;
+}
+
+.saveBtn:hover:not(:disabled) {
+    transform: translateY(-2px);
+}
+
+.saveBtn:active:not(:disabled) {
+    transform: translateY(0) scale(0.97);
+}
+
+.spinner {
+    display: inline-block;
+    width: 14px;
+    height: 14px;
+    margin-right: 8px;
+    border: 2px solid rgba(255, 255, 255, 0.4);
+    border-top-color: white;
+    border-radius: 50%;
+    animation: spin 0.7s linear infinite;
+    vertical-align: middle;
+}
+
+.shakeError {
+    animation: shake 0.4s ease;
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+    .petCard,
+    .petCard .material-symbols-outlined,
+    .tipCard,
+    .tipIcon,
+    .learnMore span:last-child,
+    .formCard,
+    .formHeading,
+    .formField,
+    .fieldInput,
+    .calendarIcon,
+    .formActions,
+    .cancelBtn,
+    .saveBtn,
+    .spinner {
+        animation: none !important;
+        transition: none !important;
+        transform: none !important;
+        opacity: 1 !important;
+    }
+}
