@@ -31,7 +31,7 @@ export default function Appointment({ appt, index = 0 }) {
         <tr
             className={`hover:bg-surface-container-highest/30 transition-colors group`}
         >
-            <td className="px-4 md:px-6 py-5 font-bold text-primary text-sm whitespace-nowrap">{appt.time}</td>
+            <td className="px-4 md:px-6 py-5 font-bold text-primary text-sm whitespace-nowrap">{appt.appointment_time}</td>
             <td className="px-4 md:px-6 py-5">
                 <div className="flex items-center gap-3">
                     <div className="w-8 h-8 rounded-full overflow-hidden bg-surface-container flex-shrink-0">
