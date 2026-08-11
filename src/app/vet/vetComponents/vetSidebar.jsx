@@ -3,18 +3,6 @@ import styles from '../dashboard/VetDashboard.module.css';
 export default function VetSideBar({ navItems }) {
     return (
         <aside className={styles.sidebar}>
-            <div className={styles.brand}>
-                <div className={styles.brandMark}>
-                    <span className="material-symbols-outlined" style={{ fontVariationSettings: "'FILL' 1" }}>
-                        pets
-                    </span>
-                </div>
-                <div>
-                    <h1 className={styles.brandTitle}>PetCare Plus</h1>
-                    <p className={styles.brandSubtitle}>Veterinary Clinic</p>
-                </div>
-            </div>
-
             <nav className={styles.nav}>
                 <a className={styles.navLinkActive} href="#">
                     <span className="material-symbols-outlined">dashboard</span>

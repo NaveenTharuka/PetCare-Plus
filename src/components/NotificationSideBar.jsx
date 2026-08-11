@@ -10,7 +10,7 @@ export default function NotificationSideBar() {
 
     return (
         <div
-            className={`fixed inset-0 z-60 flex justify-end transition-all duration-300 ${open ? "pointer-events-auto" : "pointer-events-none"
+            className={`fixed inset-0 z-101 flex justify-end transition-all duration-300 ${open ? "pointer-events-auto" : "pointer-events-none"
                 }`}
         >
             {/* Backdrop */}
