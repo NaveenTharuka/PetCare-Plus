@@ -85,7 +85,7 @@ export default function NavBar() {
   };
 
   return (
-    <header className="bg-[#fbf9f7]/80 backdrop-blur-md fixed top-0 w-full z-50">
+    <header className="bg-[#fbf9f7]/80 backdrop-blur-md fixed top-0 w-full z-100">
       <nav className="flex justify-between items-center px-8 h-20 w-full max-w-screen-2xl mx-auto font-headline tracking-tight">
         {/* Logo */}
         <div
