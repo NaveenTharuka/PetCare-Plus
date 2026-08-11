@@ -1,8 +1,13 @@
 "use client"
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 
 export default function Footer() {
   const router = useRouter();
+  const pathname = usePathname();
+
+  if (pathname?.startsWith("/vet")) {
+    return null;
+  }
   return (
     <>
       <footer className="bg-[#f5f3f1] w-full">
