@@ -1,0 +1,164 @@
+/* Dedicated Vet Sidebar CSS */
+.sidebar {
+    display: none;
+    position: fixed;
+    left: 0;
+    top: 0;
+    z-index: 50;
+    flex-direction: column;
+    height: 100vh;
+    width: 256px;
+    padding: 1.25rem 1rem 1rem;
+    background-color: #f5f3f1;
+    font-size: 0.875rem;
+    border-right: 1px solid rgba(177, 178, 176, 0.2);
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    box-sizing: border-box;
+}
+
+@media (min-width: 768px) {
+    .sidebar {
+        display: flex;
+    }
+}
+
+/* Brand Header */
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.5rem 0.5rem 1.5rem;
+    text-decoration: none;
+}
+
+.brandMark {
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 12px;
+    background: #7b5749;
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 10px rgba(123, 87, 73, 0.25);
+    flex-shrink: 0;
+}
+
+.brandInfo {
+    display: flex;
+    flex-direction: column;
+}
+
+.brandTitle {
+    font-weight: 900;
+    color: #7b5749;
+    font-size: 1.125rem;
+    line-height: 1.1;
+    margin: 0;
+    letter-spacing: -0.02em;
+}
+
+.brandSubtitle {
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: #5e5f5d;
+    font-weight: 700;
+    margin: 2px 0 0 0;
+}
+
+/* Navigation Links */
+.nav {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+    flex: 1;
+}
+
+.navLink {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.75rem 1rem;
+    color: #5e5f5d;
+    border-radius: 12px;
+    text-decoration: none;
+    font-weight: 500;
+    transition: all 0.2s ease;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    text-align: left;
+    font-size: 0.875rem;
+    box-sizing: border-box;
+}
+
+.navLink:hover {
+    background-color: #e9e8e6;
+    color: #313331;
+}
+
+.navLink:active {
+    transform: scale(0.98);
+}
+
+.navLinkActive {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.75rem 1rem;
+    background-color: #fadcd2;
+    color: #624d45;
+    font-weight: 700;
+    border-radius: 12px;
+    text-decoration: none;
+    width: 100%;
+    text-align: left;
+    font-size: 0.875rem;
+    box-sizing: border-box;
+}
+
+.navLinkActive:hover {
+    background-color: #f4c4b4;
+    color: #5e3e32;
+}
+
+/* CTA Button */
+.ctaButton {
+    margin-top: 1rem;
+    width: 100%;
+    padding: 0.75rem 1rem;
+    background: linear-gradient(135deg, #7b5749 0%, #6d4b3e 100%);
+    color: #ffffff;
+    border: none;
+    border-radius: 9999px;
+    font-weight: 700;
+    font-size: 0.875rem;
+    box-shadow: 0 4px 12px rgba(123, 87, 73, 0.25);
+    cursor: pointer;
+    transition: opacity 0.2s, transform 0.1s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+.ctaButton:hover {
+    opacity: 0.92;
+    transform: translateY(-1px);
+}
+
+.ctaButton:active {
+    transform: translateY(0);
+}
+
+/* Sidebar Footer */
+.sidebarFooter {
+    margin-top: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    padding-top: 1rem;
+    border-top: 1px solid rgba(177, 178, 176, 0.2);
+}

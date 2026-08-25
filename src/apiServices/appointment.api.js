@@ -3,7 +3,7 @@ import api from "../auth/apiClient";
 export async function getVetAppointments(vet_id) {
     try {
         const response = await api.get(`/vet/${vet_id}/appointments`);
-        return response;
+        return response.data;
     } catch (error) {
         return error;
     }

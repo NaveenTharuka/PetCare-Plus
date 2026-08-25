@@ -1,29 +1,57 @@
 import { usePathname } from 'next/navigation';
-import styles from '../dashboard/VetDashboard.module.css';
+import Link from 'next/link';
+import styles from './VetSidebar.module.css';
 
 export default function VetSideBar() {
+    const path = usePathname();
 
-    const path = usePathname()
+    const isDashboard = path === '/vet/dashboard';
+    const isAppointments = path?.startsWith('/vet/appointments') || path === '/vet/appointment';
+    const isPatients = path?.startsWith('/vet/patients');
 
     return (
         <aside className={styles.sidebar}>
+            {/* Brand / Logo */}
+            <Link href="/vet/dashboard" className={styles.brand}>
+                <div className={styles.brandMark}>
+                    <span className="material-symbols-outlined" style={{ fontSize: '1.25rem', fontVariationSettings: "'FILL' 1" }}>
+                        pets
+                    </span>
+                </div>
+                <div className={styles.brandInfo}>
+                    <span className={styles.brandTitle}>PetCare+</span>
+                    <span className={styles.brandSubtitle}>Clinic Ecosystem</span>
+                </div>
+            </Link>
+
+            {/* Nav */}
             <nav className={styles.nav}>
-                <a className={path == "/vet/dashboard" ? styles.navLinkActive : styles.navLink} href="/vet/dashboard" >
+                <Link
+                    className={isDashboard ? styles.navLinkActive : styles.navLink}
+                    href="/vet/dashboard"
+                >
                     <span className="material-symbols-outlined">dashboard</span>
                     <span>Dashboard</span>
-                </a>
-                <a className={path == "/vet/appointment" ? styles.navLinkActive : styles.navLink} href="#">
+                </Link>
+                <Link
+                    className={isAppointments ? styles.navLinkActive : styles.navLink}
+                    href="/vet/appointments"
+                >
                     <span className="material-symbols-outlined">calendar_today</span>
                     <span>Appointments</span>
-                </a>
-                <a className={path == "/vet/patients" ? styles.navLinkActive : styles.navLink} href="/vet/patients/">
+                </Link>
+                <Link
+                    className={isPatients ? styles.navLinkActive : styles.navLink}
+                    href="/vet/patients"
+                >
                     <span className="material-symbols-outlined">pets</span>
                     <span>Patients</span>
-                </a>
+                </Link>
             </nav>
 
             <button className={styles.ctaButton} type="button">
-                New Appointment
+                <span className="material-symbols-outlined" style={{ fontSize: '1.1rem' }}>add</span>
+                <span>New Appointment</span>
             </button>
 
             <div className={styles.sidebarFooter}>
@@ -37,5 +65,5 @@ export default function VetSideBar() {
                 </a>
             </div>
         </aside>
-    )
+    );
 }

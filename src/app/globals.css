@@ -1,6 +1,6 @@
 @import "tailwindcss";
 
-inline {
+:root {
   --color-secondary: #705a52;
   --color-surface-container-high: #e9e8e6;
   --color-error: #a83836;
