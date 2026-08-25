@@ -17,3 +17,12 @@ export async function getUserAppointments(owner_id) {
         return error.response.data;
     }
 }
+
+export async function updateStatus(appointment_id, status) {
+    try {
+        const response = await api.put(`/appointment/${appointment_id}/status`, { status });
+        return response.data;
+    } catch (error) {
+        return error.response.data;
+    }
+}
