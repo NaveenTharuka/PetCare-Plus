@@ -395,6 +395,22 @@
     color: #644f19;
 }
 
+.statusPending {
+    background: #ffdf9b;
+    color: #644f19;
+}
+
+.statusCompleted {
+    background: #e2e3e0;
+    color: #313331;
+}
+
+.statusCancelled,
+.statusRejected {
+    background: rgba(168, 56, 54, 0.12);
+    color: #a83836;
+}
+
 .actionsHead {
     text-align: right;
 }
