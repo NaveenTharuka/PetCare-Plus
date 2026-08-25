@@ -7,6 +7,8 @@ import { getVetAppointments } from "@/apiServices/appointment.api";
 import { useAuth } from "@/auth/AuthProvider";
 import VetSideBar from "../vetComponents/vetSidebar";
 import Appointment from "../vetComponents/todayAppointments";
+import VetLoader from "../vetComponents/VetLoader";
+import Loader from "@/components/Loader";
 
 const quickActions = [
     { icon: "event", label: "View Appointments" },
@@ -16,18 +18,48 @@ const quickActions = [
 
 export default function Dashboard() {
 
-    const [loading, setLoading] = useState(false)
+    const [loading, setLoading] = useState(true)
     const [error, setError] = useState()
+
     const [todaySchedule, setTodaySchedule] = useState([])
+    const [upcomingSchedule, setUpcomingSchedule] = useState([])
+    const [completedSchedule, setCompletedSchedule] = useState([])
+
     const { user } = useAuth()
 
+    const today = new Date();
+    const formattedDate = today.toLocaleDateString("en-US", {
+        year: "numeric",
+        month: "long",
+        day: "numeric",
+    });
+
     useEffect(() => {
+
+        function filterAppointments(appointments) {
+            const now = new Date();
+            const formatted = now.toISOString().split('T')[0];
+
+            if (!appointments) return;
+
+            const filtered = appointments.filter((app) => app.appointment_date === formatted);
+            setTodaySchedule(filtered);
+
+            const later = appointments.filter((app) => app.appointment_date > formatted);
+            setUpcomingSchedule(later);
+
+            const completed = appointments.filter((app) => app.appointment_date < formatted);
+            setCompletedSchedule(completed);
+        }
+
         async function fetchAppointments(vet) {
             try {
-                setLoading(true)
+                setError(undefined);
                 const res = await getVetAppointments(vet.id)
-                // FIX: Set the fetched appointments to state
-                setTodaySchedule(res.data || [])
+                console.log(res.data)
+                if (res) {
+                    filterAppointments(res.data)
+                }
             } catch (e) {
                 setError(e.message)
                 console.log(e)
@@ -36,31 +68,16 @@ export default function Dashboard() {
             }
         }
 
-        // FIX: Check if user exists before fetching
+        // Check if user exists before fetching
         if (user?.id) {
             fetchAppointments(user)
         }
     }, [user])
 
+    const nextAppointment = todaySchedule[0];
+
     return (
         <>
-            {/* NOTE: in a real Next.js app these font/icon links belong in app/layout.jsx
-          (App Router) or pages/_document.jsx (Pages Router), not in a page component.
-          They're included here via next/head so this file renders correctly on its own. */}
-            <Head>
-                <title>PetCare Plus | Veterinarian Dashboard</title>
-                <link rel="preconnect" href="https://fonts.googleapis.com" />
-                <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
-                <link
-                    href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap"
-                    rel="stylesheet"
-                />
-                <link
-                    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
-                    rel="stylesheet"
-                />
-            </Head>
-
             <div className={styles.root}>
                 <div className={styles.shell}>
                     {/* SIDE NAVBAR */}
@@ -68,65 +85,20 @@ export default function Dashboard() {
 
                     {/* MAIN CANVAS */}
                     <main className={styles.main}>
-                        {/* TOP NAVBAR */}
-                        <header className={styles.topbar}>
-                            <div style={{ display: "flex", alignItems: "center", gap: "1rem", flex: 1 }}>
-                                <div className={styles.searchWrap}>
-                                    <span className={`material-symbols-outlined ${styles.searchIcon}`}>search</span>
-                                    <input
-                                        className={styles.searchInput}
-                                        placeholder="Search patients, owners, or records..."
-                                        type="text"
-                                    />
-                                </div>
-                            </div>
-
-                            <div style={{ display: "flex", alignItems: "center", gap: "1.5rem" }}>
-                                <nav className={styles.topNav}>
-                                    <a className={styles.topNavLinkActive} href="#">
-                                        Overview
-                                    </a>
-                                    <a className={styles.topNavLink} href="#">
-                                        Clinic Map
-                                    </a>
-                                    <a className={styles.topNavLink} href="#">
-                                        Reports
-                                    </a>
-                                </nav>
-
-                                <div className={styles.trailingActions}>
-                                    <button className={styles.iconButton} type="button" aria-label="Notifications">
-                                        <span className="material-symbols-outlined">notifications</span>
-                                    </button>
-                                    <button className={styles.iconButton} type="button" aria-label="Settings">
-                                        <span className="material-symbols-outlined">settings</span>
-                                    </button>
-                                    <div className={styles.divider} />
-                                    <div className={styles.profile}>
-                                        <div className={styles.profileText}>
-                                            <p className={styles.profileName}>Dr. Vance</p>
-                                            <p className={styles.profileRole}>Senior Vet</p>
-                                        </div>
-                                        {/* eslint-disable-next-line @next/next/no-img-element */}
-                                        <img
-                                            className={styles.avatar}
-                                            alt="A professional headshot of a friendly veterinarian"
-                                            src="https://lh3.googleusercontent.com/aida-public/AB6AXuCu0E_zTHjgoZUNPztk4NPQ9w5E7J0_kq8uIPEwReHdN_5KNZhhpVE4C3yflIMzwOArNHUR97om7yFXPX7qzMLaM6r2TTZmzzwHyr7vh--sB6dFiC9Gu5za0C1uxRQeSQioYbNErxLKA1E-NdjHo4NHs_7mlNvW4fQTB-ti_6iaYSZcanP2RizfW22KLSYp6iOzy7ifuTbD9TfJQ-vaQ0ERIQfSHQJyLnyzLtB-I8YtLmKw1mDnMBVu"
-                                        />
-                                    </div>
-                                </div>
-                            </div>
-                        </header>
-
                         {/* CONTENT AREA */}
-                        <div className={styles.content}>
+                        {loading ? (
+                            <div style={{ display: "flex", justifyContent: "center", alignItems: "center", height: "100vh" }}>
+                                <VetLoader />
+                            </div>
+                        ) : (<div className={styles.content}>
                             {/* Welcome */}
                             <section className={styles.welcome}>
                                 <div className={styles.welcomeText}>
-                                    <h2 className={styles.welcomeHeading}>Good Morning, Dr. Vance</h2>
+                                    <h2 className={styles.welcomeHeading}>Good Morning, Dr. {user?.name}</h2>
                                     <p className={styles.welcomeSub}>
-                                        The sanctuary is busy today. You have 12 appointments scheduled, starting with Luna the
-                                        Golden Retriever in 15 minutes.
+                                        {todaySchedule.length > 0
+                                            ? `You have ${todaySchedule.length} appointment${todaySchedule.length === 1 ? "" : "s"} scheduled today${nextAppointment?.petName ? `, starting with ${nextAppointment.petName}` : ""}${nextAppointment?.time ? ` at ${nextAppointment.time}` : ""}.`
+                                            : "You have no appointments scheduled today."}
                                     </p>
                                 </div>
                                 <div className={styles.welcomeMeta}>
@@ -136,9 +108,15 @@ export default function Dashboard() {
                                         </span>
                                         Clinic Status: Optimistic
                                     </span>
-                                    <div className={styles.dateText}>August 12, 2026</div>
+                                    <div className={styles.dateText}>{formattedDate}</div>
                                 </div>
                             </section>
+
+                            {error && (
+                                <div className={styles.errorBanner} role="alert">
+                                    Couldn&apos;t load appointments: {error}
+                                </div>
+                            )}
 
                             {/* Stats bento grid */}
                             <section className={styles.statsGrid}>
@@ -147,11 +125,10 @@ export default function Dashboard() {
                                         <div className={styles.statIcon}>
                                             <span className="material-symbols-outlined">event_note</span>
                                         </div>
-                                        <span className={styles.statBadge}>+2 today</span>
                                     </div>
                                     <div>
                                         <p className={styles.statLabel}>Today&apos;s Appts</p>
-                                        <h3 className={styles.statValue}>12</h3>
+                                        <h3 className={styles.statValue}>{todaySchedule.length}</h3>
                                     </div>
                                 </div>
 
@@ -163,7 +140,7 @@ export default function Dashboard() {
                                     </div>
                                     <div>
                                         <p className={styles.statLabel}>Upcoming</p>
-                                        <h3 className={styles.statValue}>24</h3>
+                                        <h3 className={styles.statValue}>{upcomingSchedule.length}</h3>
                                     </div>
                                 </div>
 
@@ -174,11 +151,12 @@ export default function Dashboard() {
                                                 pets
                                             </span>
                                         </div>
-                                        <span className={styles.statBadgeTertiary}>New: 4</span>
                                     </div>
                                     <div>
                                         <p className={styles.statLabel}>Total Patients</p>
-                                        <h3 className={styles.statValue}>1,284</h3>
+                                        <h3 className={styles.statValue}>
+                                            {todaySchedule.length + upcomingSchedule.length + completedSchedule.length}
+                                        </h3>
                                     </div>
                                 </div>
 
@@ -190,7 +168,7 @@ export default function Dashboard() {
                                     </div>
                                     <div>
                                         <p className={styles.statLabelOnPrimary}>Completed Visits</p>
-                                        <h3 className={styles.statValueOnPrimary}>8</h3>
+                                        <h3 className={styles.statValueOnPrimary}>{completedSchedule.length}</h3>
                                     </div>
                                 </div>
                             </section>
@@ -219,9 +197,17 @@ export default function Dashboard() {
                                                     </tr>
                                                 </thead>
                                                 <tbody className={styles.tableBody}>
-                                                    {todaySchedule.map((appt) => (
-                                                        <Appointment key={appt.id} appt={appt} />
-                                                    ))}
+                                                    {todaySchedule.length > 0 ? (
+                                                        todaySchedule.map((appt) => (
+                                                            <Appointment key={appt.id} appt={appt} />
+                                                        ))
+                                                    ) : (
+                                                        <tr>
+                                                            <td colSpan={5} className={styles.emptyRow}>
+                                                                No appointments scheduled for today.
+                                                            </td>
+                                                        </tr>
+                                                    )}
                                                 </tbody>
                                             </table>
                                         </div>
@@ -273,7 +259,7 @@ export default function Dashboard() {
                                     </div>
                                 </aside>
                             </div>
-                        </div>
+                        </div>)}
 
 
                     </main>
