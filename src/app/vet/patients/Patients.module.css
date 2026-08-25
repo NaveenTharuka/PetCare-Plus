@@ -1,0 +1,812 @@
+/* ===== Design tokens (from source Tailwind config) ===== */
+.shell {
+    --on-primary-fixed: #482b20;
+    --inverse-surface: #0d0e0e;
+    --on-tertiary-container: #644f19;
+    --on-primary-container: #5e3e32;
+    --on-background: #313331;
+    --secondary-fixed-dim: #ebcec4;
+    --surface-variant: #e2e3e0;
+    --on-error-container: #6e0a12;
+    --primary-fixed: #f4c4b4;
+    --tertiary-dim: #66501a;
+    --surface: #fbf9f7;
+    --error-dim: #67040d;
+    --surface-bright: #fbf9f7;
+    --surface-container-lowest: #ffffff;
+    --outline: #7a7b79;
+    --on-surface: #313331;
+    --on-primary: #fff7f5;
+    --inverse-primary: #f4c4b4;
+    --outline-variant: #b1b2b0;
+    --on-tertiary-fixed-variant: #6f5822;
+    --background: #fbf9f7;
+    --surface-container-highest: #e2e3e0;
+    --on-tertiary: #fff8f0;
+    --secondary-container: #fadcd2;
+    --on-tertiary-fixed: #503c07;
+    --on-secondary: #fff7f5;
+    --secondary-fixed: #fadcd2;
+    --primary-fixed-dim: #e5b7a7;
+    --surface-tint: #7b5749;
+    --on-surface-variant: #5e5f5d;
+    --inverse-on-surface: #9d9d9b;
+    --primary-dim: #6d4b3e;
+    --on-secondary-fixed-variant: #6c574f;
+    --tertiary: #735c25;
+    --surface-dim: #dadad7;
+    --tertiary-fixed: #ffdf9b;
+    --on-error: #fff7f6;
+    --error-container: #fa746f;
+    --secondary-dim: #634e47;
+    --tertiary-container: #ffdf9b;
+    --tertiary-fixed-dim: #f0d18e;
+    --primary: #7b5749;
+    --error: #a83836;
+    --secondary: #705a52;
+    --surface-container-high: #e9e8e6;
+    --on-secondary-fixed: #4e3b34;
+    --surface-container-low: #f5f3f1;
+    --surface-container: #efeeeb;
+    --on-secondary-container: #624d45;
+    --primary-container: #f4c4b4;
+    --on-primary-fixed-variant: #69473a;
+
+    --radius: 1rem;
+    --radius-lg: 2rem;
+    --radius-xl: 3rem;
+    --radius-full: 9999px;
+    --font-main: "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
+
+    display: flex;
+    height: 100vh;
+    overflow: hidden;
+    background: var(--surface);
+    color: var(--on-background);
+    font-family: var(--font-main);
+}
+
+.shell :global(::selection) {
+    background: var(--primary-container);
+    color: var(--on-primary-container);
+}
+
+/* ===== Side Nav ===== */
+.sideNav {
+    display: none;
+    height: 100vh;
+    width: 16rem;
+    position: fixed;
+    left: 0;
+    top: 0;
+    flex-direction: column;
+    padding: 1rem;
+    background: var(--surface-container-low);
+    z-index: 50;
+}
+
+@media (min-width: 768px) {
+    .sideNav {
+        display: flex;
+    }
+}
+
+.brand {
+    margin-bottom: 2rem;
+    padding: 0 0.5rem;
+}
+
+.brandTitle {
+    font-weight: 900;
+    color: var(--primary);
+    font-size: 1.5rem;
+    letter-spacing: -0.02em;
+    margin: 0;
+}
+
+.brandSubtitle {
+    color: var(--on-surface-variant);
+    font-size: 0.875rem;
+    margin: 0;
+}
+
+.navList {
+    flex: 1 1 0%;
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+
+.navItem {
+    color: var(--on-surface-variant);
+    border-radius: var(--radius);
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.75rem;
+    transition: all 0.2s;
+    cursor: pointer;
+}
+
+.navItem:hover {
+    background: var(--surface-container-high);
+}
+
+.navItem:active {
+    transform: scale(0.95);
+}
+
+.navItemActive {
+    background: var(--primary-container);
+    color: var(--on-primary-container);
+    font-weight: 600;
+}
+
+.navItemActive:hover {
+    background: var(--primary-container);
+}
+
+.navIcon {
+    font-size: 24px;
+}
+
+.navLabel {
+    font-size: 0.875rem;
+    font-weight: 500;
+}
+
+.navFooter {
+    margin-top: auto;
+    padding-top: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+
+.newAppointmentBtn {
+    width: 100%;
+    background: linear-gradient(to bottom right, var(--primary), var(--primary-dim));
+    color: var(--on-primary);
+    padding: 0.75rem 0;
+    border: none;
+    border-radius: var(--radius-full);
+    font-weight: 700;
+    box-shadow: 0 10px 15px -3px rgba(123, 87, 73, 0.2);
+    margin-bottom: 1.5rem;
+    cursor: pointer;
+    transition: all 0.3s;
+    font-family: inherit;
+    font-size: 0.9375rem;
+}
+
+.newAppointmentBtn:hover {
+    box-shadow: 0 20px 25px -5px rgba(123, 87, 73, 0.25);
+}
+
+.newAppointmentBtn:active {
+    transform: scale(0.98);
+}
+
+/* ===== Main ===== */
+.main {
+    flex: 1 1 0%;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    overflow-y: auto;
+}
+
+@media (min-width: 768px) {
+    .main {
+        margin-left: 16rem;
+    }
+}
+
+.main::-webkit-scrollbar {
+    width: 6px;
+}
+
+.main::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.main::-webkit-scrollbar-thumb {
+    background: var(--surface-container-highest);
+    border-radius: 10px;
+}
+
+.topNav {
+    margin-top: 100px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 1.5rem;
+    width: 100%;
+    position: sticky;
+    top: 0;
+    z-index: 40;
+    height: 4rem;
+    background: rgba(251, 249, 247, 0.8);
+    backdrop-filter: blur(20px);
+}
+
+.searchWrap {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    flex: 1 1 0%;
+}
+
+.searchInner {
+    position: relative;
+    width: 100%;
+    max-width: 28rem;
+}
+
+.searchIcon {
+    position: absolute;
+    left: 0.75rem;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--on-surface-variant);
+    font-size: 20px;
+}
+
+.searchInput {
+    width: 100%;
+    background: var(--surface-container-highest);
+    border: none;
+    border-radius: var(--radius-full);
+    padding: 0.5rem 1rem 0.5rem 2.75rem;
+    transition: all 0.2s;
+    color: var(--on-surface);
+    font-family: inherit;
+    font-size: 0.9375rem;
+}
+
+.searchInput:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px var(--primary);
+    background: var(--surface-container-lowest);
+}
+
+.canvas {
+    padding: 2rem 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+}
+
+@media (min-width: 1024px) {
+    .canvas {
+        padding: 3rem;
+    }
+}
+
+/* ===== Page header ===== */
+.pageHeader {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    justify-content: space-between;
+}
+
+@media (min-width: 768px) {
+    .pageHeader {
+        flex-direction: row;
+        align-items: flex-end;
+    }
+}
+
+.pageTitle {
+    font-weight: 700;
+    font-size: 2.25rem;
+    color: var(--on-surface);
+    letter-spacing: -0.02em;
+    line-height: 1.1;
+    margin: 0;
+}
+
+@media (min-width: 1024px) {
+    .pageTitle {
+        font-size: 3rem;
+    }
+}
+
+.pageSubtitle {
+    color: var(--on-surface-variant);
+    margin-top: 0.5rem;
+    font-size: 1.125rem;
+    margin-bottom: 0;
+}
+
+.headerActions {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.filterBtn,
+.sortBtn {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.625rem 1.5rem;
+    border-radius: var(--radius-full);
+    font-weight: 600;
+    border: none;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-family: inherit;
+    font-size: 0.875rem;
+}
+
+.filterBtn {
+    background: var(--secondary-container);
+    color: var(--on-secondary-container);
+}
+
+.filterBtn:hover {
+    background: var(--primary-container);
+}
+
+.sortBtn {
+    background: var(--surface-container-lowest);
+    color: var(--on-surface);
+    box-shadow: 0 1px 2px rgba(49, 51, 49, 0.05);
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    box-sizing: border-box;
+    border: 1px solid rgba(49, 51, 49, 0.05);
+}
+
+.sortBtn:hover {
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+.btnIconSm {
+    font-size: 16px;
+}
+
+/* ===== Patient grid ===== */
+.grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+}
+
+@media (min-width: 768px) {
+    .grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (min-width: 1280px) {
+    .grid {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+.card {
+    background: var(--surface-container-low);
+    border-radius: var(--radius);
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    transition: all 0.3s;
+}
+
+.card:hover {
+    box-shadow: 0 20px 40px rgba(49, 51, 49, 0.06);
+    transform: translateY(-4px);
+}
+
+.cardImageWrap {
+    width: 8rem;
+    height: 8rem;
+    border-radius: var(--radius-xl);
+    overflow: hidden;
+    margin-bottom: 1.5rem;
+    box-shadow: 0 0 0 4px var(--surface-container-lowest), 0 1px 2px rgba(0, 0, 0, 0.05);
+    transition: transform 0.5s;
+}
+
+.card:hover .cardImageWrap {
+    transform: scale(1.05);
+}
+
+.cardImage {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.cardInfo {
+    margin-bottom: 1.5rem;
+}
+
+.badge {
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    padding: 0.25rem 0.75rem;
+    border-radius: var(--radius-full);
+    margin-bottom: 0.5rem;
+    display: inline-block;
+}
+
+.badgeTertiary {
+    background: var(--tertiary-container);
+    color: var(--on-tertiary-container);
+}
+
+.badgeSecondary {
+    background: var(--secondary-container);
+    color: var(--on-secondary-container);
+}
+
+.badgeError {
+    background: var(--error-container);
+    color: var(--on-error-container);
+}
+
+.cardName {
+    font-weight: 700;
+    font-size: 1.5rem;
+    color: var(--on-surface);
+    margin: 0;
+}
+
+.cardBreed {
+    color: var(--on-surface-variant);
+    font-size: 0.875rem;
+    margin-top: 0.25rem;
+    margin-bottom: 0;
+}
+
+.cardMeta {
+    width: 100%;
+    padding-top: 1rem;
+    border-top: 1px solid rgba(49, 51, 49, 0.05);
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    margin-bottom: 1.5rem;
+}
+
+.metaLine {
+    color: var(--on-surface-variant);
+    font-size: 0.75rem;
+    margin: 0;
+}
+
+.metaValue {
+    color: var(--on-surface);
+    font-weight: 600;
+}
+
+.viewProfileBtn {
+    width: 100%;
+    padding: 0.75rem 0;
+    background: var(--surface-container-lowest);
+    color: var(--primary);
+    font-weight: 700;
+    border-radius: var(--radius-full);
+    border: 1px solid rgba(123, 87, 73, 0.2);
+    cursor: pointer;
+    transition: all 0.2s;
+    font-family: inherit;
+    font-size: 0.9375rem;
+}
+
+.viewProfileBtn:hover {
+    background: var(--primary);
+    color: var(--on-primary);
+}
+
+/* ===== Bento stats section ===== */
+.bentoGrid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+}
+
+@media (min-width: 1024px) {
+    .bentoGrid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+.wellnessCard {
+    background: var(--surface-container);
+    padding: 2rem;
+    border-radius: var(--radius);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+}
+
+@media (min-width: 1024px) {
+    .wellnessCard {
+        grid-column: span 2 / span 2;
+        flex-direction: row;
+    }
+}
+
+@media (min-width: 768px) {
+    .wellnessCard {
+        flex-direction: row;
+    }
+}
+
+.wellnessLeft {
+    flex: 1 1 0%;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.wellnessTitle {
+    font-weight: 700;
+    font-size: 1.875rem;
+    color: var(--on-surface);
+    margin: 0;
+}
+
+.wellnessCopy {
+    color: var(--on-surface-variant);
+    margin: 0;
+}
+
+.statsRow {
+    display: flex;
+    gap: 1rem;
+    padding-top: 1rem;
+}
+
+.statBox {
+    background: var(--surface-container-lowest);
+    padding: 1rem;
+    border-radius: 0.75rem;
+    flex: 1 1 0%;
+    border: 1px solid rgba(49, 51, 49, 0.05);
+}
+
+.statLabel {
+    color: var(--on-surface-variant);
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: -0.02em;
+    margin: 0;
+}
+
+.statValuePrimary {
+    color: var(--primary);
+    font-weight: 900;
+    font-size: 1.875rem;
+    margin: 0;
+}
+
+.statValueTertiary {
+    color: var(--tertiary);
+    font-weight: 900;
+    font-size: 1.875rem;
+    margin: 0;
+}
+
+.chartBox {
+    width: 100%;
+    height: 12rem;
+    background: var(--surface-container-high);
+    border-radius: 0.75rem;
+    position: relative;
+    overflow: hidden;
+    border: 1px solid rgba(49, 51, 49, 0.05);
+    flex-shrink: 0;
+}
+
+@media (min-width: 768px) {
+    .chartBox {
+        width: 16rem;
+    }
+}
+
+.chartBars {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    padding: 0 1rem 1rem;
+}
+
+.chartBar {
+    width: 1rem;
+    background: var(--primary);
+    border-radius: 2px 2px 0 0;
+}
+
+.chartFade {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, var(--surface-container-high), transparent 60%);
+}
+
+.tipBox {
+    width: 100%;
+    background: var(--surface-container-lowest);
+    padding: 1.5rem;
+    border-radius: 0.75rem;
+    border: 1px solid rgba(49, 51, 49, 0.05);
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    flex-shrink: 0;
+}
+
+@media (min-width: 768px) {
+    .tipBox {
+        width: 16rem;
+    }
+}
+
+.tipHeader {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--primary);
+}
+
+.tipIcon {
+    font-size: 18px;
+}
+
+.tipLabel {
+    font-weight: 700;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+}
+
+.tipCopy {
+    color: var(--on-surface);
+    font-size: 0.875rem;
+    line-height: 1.6;
+    margin: 0;
+}
+
+.tipLink {
+    color: var(--primary);
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-decoration: none;
+    margin-top: 0.5rem;
+}
+
+.tipLink:hover {
+    text-decoration: underline;
+}
+
+.suppliesCard {
+    background: linear-gradient(to bottom right, var(--secondary-container), var(--surface-container-high));
+    padding: 2rem;
+    border-radius: var(--radius);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.suppliesIcon {
+    color: var(--primary);
+    font-size: 36px;
+    display: block;
+    margin-bottom: 1rem;
+}
+
+.suppliesTitle {
+    font-weight: 700;
+    font-size: 1.5rem;
+    color: var(--on-secondary-container);
+    margin: 0 0 1rem;
+}
+
+.suppliesCopy {
+    color: rgba(98, 77, 69, 0.8);
+    font-size: 0.875rem;
+    margin: 0;
+}
+
+.orderBtn {
+    margin-top: 2rem;
+    padding: 0.75rem 1.5rem;
+    background: var(--on-secondary-container);
+    color: var(--surface);
+    border: none;
+    border-radius: var(--radius-full);
+    font-weight: 700;
+    cursor: pointer;
+    transition: opacity 0.2s;
+    font-family: inherit;
+    font-size: 0.9375rem;
+}
+
+.orderBtn:hover {
+    opacity: 0.9;
+}
+
+.orderBtn:active {
+    transform: scale(0.95);
+}
+
+/* ===== Footer ===== */
+.footer {
+    margin-top: auto;
+    padding: 3rem 2rem;
+    color: var(--on-surface-variant);
+    text-align: center;
+    opacity: 0.4;
+}
+
+.footer p {
+    font-size: 0.75rem;
+    margin: 0;
+}
+
+/* ===== FAB ===== */
+.fab {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    width: 3.5rem;
+    height: 3.5rem;
+    background: var(--primary);
+    color: var(--on-primary);
+    border: none;
+    border-radius: var(--radius-full);
+    box-shadow: 0 20px 40px rgba(123, 87, 73, 0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: transform 0.2s;
+    z-index: 50;
+}
+
+.fab:hover {
+    transform: scale(1.1);
+}
+
+.fab:hover .fabTooltip {
+    opacity: 1;
+}
+
+.fab:active {
+    transform: scale(0.9);
+}
+
+.fabIcon {
+    font-size: 30px;
+}
+
+.fabTooltip {
+    position: absolute;
+    right: 4rem;
+    background: var(--on-background);
+    color: var(--surface);
+    font-size: 0.75rem;
+    font-weight: 700;
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    white-space: nowrap;
+    opacity: 0;
+    transition: opacity 0.2s;
+    pointer-events: none;
+}

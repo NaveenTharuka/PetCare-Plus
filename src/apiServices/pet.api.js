@@ -2,6 +2,16 @@ import PetProfileEdit from "@/app/user/me/pets/[petId]/edit/page";
 import api from "../auth/apiClient";
 
 
+export async function getAllPets() {
+    try {
+        const res = await api.get(`/pets`);
+        return res.data;
+    } catch (e) {
+        console.log(e);
+        return null;
+    }
+}
+
 export async function getPetById(petId) {
     try {
         const res = await api.get(`/pet/${petId}`);
