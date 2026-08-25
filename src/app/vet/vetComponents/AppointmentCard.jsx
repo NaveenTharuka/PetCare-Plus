@@ -30,19 +30,6 @@ export default function AppointmentCard({ appt }) {
                         {appt.status}
                     </span>
                 </td>
-                <td className={styles.actionsCell}>
-                    <div className={styles.actionBtns}>
-                        <button className={styles.actionBtn} title="View">
-                            <span className="material-symbols-outlined">visibility</span>
-                        </button>
-                        <button className={styles.actionBtn} title="Complete">
-                            <span className="material-symbols-outlined">check_circle</span>
-                        </button>
-                        <button className={`${styles.actionBtn} ${styles.dangerBtn}`} title="Cancel">
-                            <span className="material-symbols-outlined">close</span>
-                        </button>
-                    </div>
-                </td>
             </tr>
         )
     )

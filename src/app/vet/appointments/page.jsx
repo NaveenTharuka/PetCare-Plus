@@ -321,7 +321,6 @@ export default function AppointmentsPage() {
                                             <th>Schedule</th>
                                             <th>Reason</th>
                                             <th>Status</th>
-                                            <th className={styles.actionsHead}>Actions</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -334,7 +333,7 @@ export default function AppointmentsPage() {
                                             ))
                                         ) : (
                                             <tr>
-                                                <td colSpan="5" className={styles.emptyState}>
+                                                <td colSpan="4" className={styles.emptyState}>
                                                     No {activeFilter} appointments found
                                                 </td>
                                             </tr>
