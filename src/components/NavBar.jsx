@@ -58,6 +58,22 @@ export default function NavBar() {
     setIsDropdownOpen(false);
   };
 
+  const navigationItems = user?.role === 'VET'
+    ? [
+      { name: 'Dashboard', path: '/vet/dashboard' },
+      { name: 'Appointments', path: '/vet/appointments' },
+      { name: 'Patients', path: '/vet/patients' },
+      { name: 'Services', path: '/services' },
+      { name: 'Contact', path: '/contact' },
+    ]
+    : [
+      { name: 'Dashboard', path: '/user/me' },
+      { name: 'My Pets', path: '/user/me' },
+      { name: 'Book Appointment', path: '/user/me/appointments/new' },
+      { name: 'Services', path: '/services' },
+      { name: 'Contact', path: '/contact' },
+    ];
+
   const renderButtonContent = () => {
     if (!user) {
       return (
@@ -98,16 +114,11 @@ export default function NavBar() {
 
         {/* Desktop Navigation Links */}
         <div className="hidden md:flex items-center gap-10">
-          {[
-            { name: 'Dashboard', path: '/user/me' },
-            { name: 'Pets', path: '/#' },
-            { name: 'Services', path: '/#' },
-            { name: 'Store', path: '#' }
-          ].map((item) => (
+          {navigationItems.map((item) => (
             <Link
               key={item.name}
               href={item.path}
-              className="text-[#414140] dark:text-stone-400 hover:text-[#5d4137] transition-colors duration-300"
+              className={`text-[#414140] dark:text-stone-400 hover:text-[#5d4137] transition-colors duration-300 ${pathname === item.path ? 'text-[#5d4137] font-semibold' : ''}`}
             >
               {item.name}
             </Link>

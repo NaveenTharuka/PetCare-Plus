@@ -48,3 +48,16 @@ export async function getVetAppointmentDetails(vetId, appointmentId) {
         throw new Error(message);
     }
 }
+
+export async function updateVetAppointment(vetId, appointmentId, updates) {
+    try {
+        const response = await api.patch(
+            `/vet/${vetId}/appointments/${appointmentId}`,
+            updates
+        );
+        return response.data;
+    } catch (error) {
+        const message = error.response?.data?.detail || "Unable to update the appointment.";
+        throw new Error(message);
+    }
+}
