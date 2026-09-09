@@ -1,4 +1,5 @@
 import styles from '../appointments/AppointmentManagement.module.css';
+import Link from "next/link";
 
 export default function AppointmentCard({ appt }) {
     const getStatusClass = (status) => {
@@ -66,6 +67,17 @@ export default function AppointmentCard({ appt }) {
                 <span className={`${styles.statusBadge} ${statusBadgeClass}`}>
                     {appt.status}
                 </span>
+            </td>
+
+            <td className={styles.actionsCell}>
+                <Link
+                    href={`/vet/appointments/${appt.id}`}
+                    className={styles.actionBtn}
+                    aria-label={`View ${appt.pet}'s appointment`}
+                    title="View appointment"
+                >
+                    <span className="material-symbols-outlined">visibility</span>
+                </Link>
             </td>
         </tr>
     );

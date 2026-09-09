@@ -321,6 +321,7 @@ export default function AppointmentsPage() {
                                             <th>Schedule</th>
                                             <th>Reason</th>
                                             <th>Status</th>
+                                            <th>Actions</th>
                                         </tr>
                                     </thead>
                                     <tbody>
