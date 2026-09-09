@@ -36,3 +36,15 @@ export async function updateStatus(appointment_id, status) {
         return error.response.data;
     }
 }
+
+export async function getVetAppointmentDetails(vetId, appointmentId) {
+    try {
+        const response = await api.get(
+            `/vet/${vetId}/appointments/${appointmentId}`
+        );
+        return response.data;
+    } catch (error) {
+        const message = error.response?.data?.detail || "Unable to load appointment details.";
+        throw new Error(message);
+    }
+}
