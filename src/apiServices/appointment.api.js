@@ -1,5 +1,15 @@
 import api from "../auth/apiClient";
 
+export async function createAppointment(appointment) {
+    try {
+        const response = await api.post("/appointment", appointment);
+        return response.data;
+    } catch (error) {
+        const message = error.response?.data?.detail || "Unable to create the appointment.";
+        throw new Error(typeof message === "string" ? message : "Unable to create the appointment.");
+    }
+}
+
 export async function getVetAppointments(vet_id) {
     try {
         const response = await api.get(`/vet/${vet_id}/appointments`);

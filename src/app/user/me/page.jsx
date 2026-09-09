@@ -106,10 +106,16 @@ export default function UserProfile() {
             <div className="lg:w-2/3 space-y-8">
               <div className={`${styles.sectionHeader} flex justify-between items-center px-2`}>
                 <h2 className="font-headline text-3xl font-bold text-on-surface">Your Furry Family</h2>
-                <Link href={`/user/me/pets/new`} className={`${styles.addPetLink} flex items-center gap-2 text-primary font-bold hover:opacity-80`}>
-                  <span className="material-symbols-outlined" data-icon="add_circle">add_circle</span>
-                  <span>Add New Pet</span>
-                </Link>
+                <div className="flex items-center gap-5">
+                  <Link href="/user/me/appointments/new" className={`${styles.addPetLink} flex items-center gap-2 text-primary font-bold hover:opacity-80`}>
+                    <span className="material-symbols-outlined" data-icon="calendar_add_on">calendar_add_on</span>
+                    <span>Book Appointment</span>
+                  </Link>
+                  <Link href={`/user/me/pets/new`} className={`${styles.addPetLink} flex items-center gap-2 text-primary font-bold hover:opacity-80`}>
+                    <span className="material-symbols-outlined" data-icon="add_circle">add_circle</span>
+                    <span>Add New Pet</span>
+                  </Link>
+                </div>
               </div>
 
               {pets.length > 0 ? (
