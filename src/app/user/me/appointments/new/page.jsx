@@ -6,17 +6,32 @@ import { useRouter } from "next/navigation";
 import ProtectedRoutes from "@/auth/ProtectedRoutes";
 import { useAuth } from "@/auth/AuthProvider";
 import Loader from "@/components/Loader";
-import { createAppointment } from "@/apiServices/appointment.api";
+import { createAppointment, getVetAvailability } from "@/apiServices/appointment.api";
 import { getAllUsers } from "@/apiServices/user.api";
 import styles from "./AppointmentBooking.module.css";
 
 const today = new Date().toISOString().split("T")[0];
+const appointmentTimeSlots = Array.from({ length: 16 }, (_, index) => {
+  const totalMinutes = 9 * 60 + index * 30;
+  return `${String(Math.floor(totalMinutes / 60)).padStart(2, "0")}:${String(totalMinutes % 60).padStart(2, "0")}`;
+});
+
+function formatTimeSlot(value) {
+  const [hours, minutes] = value.split(":").map(Number);
+  return new Intl.DateTimeFormat("en-US", {
+    hour: "numeric",
+    minute: "2-digit",
+  }).format(new Date(2020, 0, 1, hours, minutes));
+}
 
 export default function AppointmentBookingPage() {
   const { user, loading } = useAuth();
   const router = useRouter();
   const [vets, setVets] = useState([]);
   const [isLoadingVets, setIsLoadingVets] = useState(true);
+  const [bookedTimes, setBookedTimes] = useState([]);
+  const [isLoadingAvailability, setIsLoadingAvailability] = useState(false);
+  const [availabilityError, setAvailabilityError] = useState("");
   const [loadError, setLoadError] = useState("");
   const [submitError, setSubmitError] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -65,15 +80,57 @@ export default function AppointmentBookingPage() {
     return () => { isMounted = false; };
   }, []);
 
+  useEffect(() => {
+    if (!form.vet_id || !form.appointment_date) {
+      setBookedTimes([]);
+      return;
+    }
+
+    let isMounted = true;
+    setIsLoadingAvailability(true);
+    setAvailabilityError("");
+
+    async function loadAvailability() {
+      try {
+        const unavailableTimes = await getVetAvailability(form.vet_id, form.appointment_date);
+        if (isMounted) {
+          const normalizedTimes = unavailableTimes.map((time) => time.slice(0, 5));
+          setBookedTimes(normalizedTimes);
+          if (normalizedTimes.includes(form.appointment_time)) {
+            setForm((current) => ({ ...current, appointment_time: "" }));
+          }
+        }
+      } catch (error) {
+        if (isMounted) setAvailabilityError(error.message);
+      } finally {
+        if (isMounted) setIsLoadingAvailability(false);
+      }
+    }
+
+    loadAvailability();
+    return () => { isMounted = false; };
+  }, [form.vet_id, form.appointment_date]);
+
   const updateField = (event) => {
     const { name, value } = event.target;
     setSubmitError("");
     setForm((current) => ({ ...current, [name]: value }));
   };
 
+  const selectTime = (appointment_time) => {
+    setSubmitError("");
+    setForm((current) => ({ ...current, appointment_time }));
+  };
+
   const handleSubmit = async (event) => {
     event.preventDefault();
     setSubmitError("");
+
+    if (!form.appointment_time) {
+      setSubmitError("Select an available appointment time.");
+      return;
+    }
+
     setIsSubmitting(true);
 
     try {
@@ -143,7 +200,35 @@ export default function AppointmentBookingPage() {
                   {!isLoadingVets && !loadError && vets.length === 0 && <p className={styles.error} role="alert">No veterinarians are available to book right now.</p>}
                   <div className={styles.twoColumns}>
                     <label>Appointment date<input name="appointment_date" type="date" min={today} value={form.appointment_date} onChange={updateField} required /></label>
-                    <label>Preferred time<input name="appointment_time" type="time" value={form.appointment_time} onChange={updateField} required /></label>
+                    <div className={styles.timeField}>
+                      <span>Preferred time</span>
+                      {!form.vet_id || !form.appointment_date ? (
+                        <p className={styles.timeHint}>Select a veterinarian and date to view times.</p>
+                      ) : isLoadingAvailability ? (
+                        <p className={styles.timeHint}>Checking availability…</p>
+                      ) : availabilityError ? (
+                        <p className={styles.error} role="alert">{availabilityError}</p>
+                      ) : (
+                        <div className={styles.timeSlots} role="group" aria-label="Available appointment times">
+                          {appointmentTimeSlots.map((time) => {
+                            const isBooked = bookedTimes.includes(time);
+                            return (
+                              <button
+                                type="button"
+                                key={time}
+                                disabled={isBooked}
+                                onClick={() => selectTime(time)}
+                                className={`${styles.timeSlot} ${form.appointment_time === time ? styles.timeSlotSelected : ""}`}
+                                title={isBooked ? "Already booked" : `Select ${formatTimeSlot(time)}`}
+                              >
+                                {formatTimeSlot(time)}
+                              </button>
+                            );
+                          })}
+                        </div>
+                      )}
+                      <input type="hidden" name="appointment_time" value={form.appointment_time} required />
+                    </div>
                   </div>
                   <label>Reason for visit<textarea name="reason" value={form.reason} onChange={updateField} rows="5" maxLength="500" placeholder="Briefly tell the veterinarian what you need help with." required /></label>
                   {submitError && <p className={styles.error} role="alert">{submitError}</p>}

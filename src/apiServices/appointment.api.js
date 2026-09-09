@@ -61,3 +61,15 @@ export async function updateVetAppointment(vetId, appointmentId, updates) {
         throw new Error(message);
     }
 }
+
+export async function getVetAvailability(vetId, appointmentDate) {
+    try {
+        const response = await api.get(`/vet/${vetId}/availability`, {
+            params: { appointment_date: appointmentDate },
+        });
+        return response.data.booked_times || [];
+    } catch (error) {
+        const message = error.response?.data?.detail || "Unable to load appointment availability.";
+        throw new Error(message);
+    }
+}
