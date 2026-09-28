@@ -54,7 +54,7 @@ export default function NavBar() {
   };
 
   const handleAccount = () => {
-    router.push('/account');
+    router.push('/user/me');
     setIsDropdownOpen(false);
   };
 
